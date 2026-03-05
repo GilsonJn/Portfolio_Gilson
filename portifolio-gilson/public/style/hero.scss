@@ -1,0 +1,111 @@
+.hero {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 3rem;
+  min-height: 80vh; 
+
+  .hero-content {
+    h1 {
+      //color: var(--neon-purple);
+    }
+
+    h2 {
+      color: var(--text-muted);
+      font-weight: 100;
+      margin: 0%;
+    }
+
+    p {
+      line-height: 1.5;
+      max-width: 500px;
+      margin: 20px 0;
+    }
+
+    .button {
+      margin: 0 auto;
+      box-shadow: 0 0 30px rgba(176, 38, 255, 0.4);
+      background: var(--gradiente2);
+      background-size: 200% 200%;
+      animation: girarGradiente 4s linear infinite;
+      border-radius: 30px;
+      padding: 1px;
+      width: 116px;
+    }
+
+    .btn-cv {
+      background-color: var(--bg-dark);
+      color: var(--neon-purple);
+      padding: 0.7rem 0.8rem;
+      border-radius: 30px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: transparent;
+        color: var(--text-light);
+        box-shadow: 0 0 15px var(--neon-purple); // Brilho ao passar o mouse
+      }
+    }
+  }
+
+  .image-section {
+    display: none;
+  }
+
+
+  // Media Query para Desktop
+  @media (min-width: 768px) {
+    flex-direction: row; 
+    justify-content: space-between;
+    text-align: left;
+    padding: 0;
+    border: 2px solid red;
+
+    .text-section {
+      align-items: flex-start;
+      border: 2px solid red;
+      padding: 20px 0;
+      margin: 50px 0;
+
+      h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: 2.2px;
+      }
+
+      p {
+        margin: 20px 0;
+      }
+
+      .button {
+        margin: 0;
+      }
+    }
+
+    .image-section {
+      display: block;
+      border: 2px solid red;
+
+      .borda-gradiente {
+        display: inline-block;
+        padding: 2px;
+        border-radius: 225px 225px 0 0;
+        box-shadow: 0 0 20px rgba(175, 38, 255, 0.253);
+        background: var(--gradiente2);
+        background-size: 200% 200%;
+        animation: girarGradiente 4s linear infinite;
+
+        img {
+          display: block;
+          max-width: 450px;
+          height: auto;
+          background-color: var(--bg-dark);
+          border-radius: 225px 225px 0 0;
+        }
+
+      }
+    }
+  }
+}

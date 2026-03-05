@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+// Variáveis Globais
+:root {
+  --bg-dark: #0d0e15;
+  --text-light: #ffffff;
+  --text-muted: #a0a0a0;
+  --neon-blue: #2d5bff;
+  --neon-purple: #b026ff;
+  --gradiente1: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  --gradiente2: linear-gradient(270deg, var(--neon-purple), var(--neon-blue), var(--neon-purple));
+  --font-mono: 'Space Grotesk', 'Courier New', Courier, monospace;
+  --font-sans: 'Space Grotesk', 'Inter', sans-serif;
+
+  --alinhar-section: 12px 16px;
+
+  --titulo: 2.4rem;
+  --titulo-mob: 1.9rem;
+
+  --subtitulo: 1.7rem;
+  --subtitulo-mob: 1.3rem;
+
+  --texto: 1rem;
+  --texto-mob: 0.85rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes girarGradiente {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulsarBrilho {
+  0% {
+    /* Brilho inicial (menor e mais nítido) */
+    box-shadow: 0 0 10px rgba(175, 38, 255, 0.279), 0 0 20px rgba(45, 91, 255, 0.3);
+  }
+
+  100% {
+    /* Brilho final (maior e mais difuso) */
+    box-shadow: 0 0 20px rgba(175, 38, 255, 0.208), 0 0 50px rgba(45, 91, 255, 0.6);
+  }
+}
