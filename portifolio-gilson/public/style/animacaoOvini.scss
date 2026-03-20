@@ -1,0 +1,23 @@
+.section-ovini {
+  position: relative; // Fundamental para o posicionamento relativo do wrapper
+  width: 100%;
+  min-height: 80vh; // Garante uma altura considerável para o trajeto vertical
+  overflow: hidden; // Impede barras de rolagem se o óvini sair da tela
+  background-color: transparent; // Ou a sua cor de fundo escura se preferir
+
+  .ovini-wrapper {
+    position: absolute;
+    top: 50%; // Começa centralizado verticalmente
+    left: 10%; // Começa um pouco para a direita
+    transform: translate(-50%, -50%); // Centraliza o próprio óvini na posição
+    z-index: 5; // Joga por cima do fundo mas talvez atrás de textos se preferir
+
+    .ovini-icon {
+      width: 60px; // Ajuste o tamanho do óvini aqui
+      height: auto;
+      display: block;
+      /* Opcional: Adicionar um leve brilho neon ao óvini */
+      filter: drop-shadow(0 0 10px rgba(176, 38, 255, 0.5));
+    }
+  }
+}

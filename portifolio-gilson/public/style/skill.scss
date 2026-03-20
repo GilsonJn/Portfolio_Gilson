@@ -1,0 +1,155 @@
+.sobre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 80vh;
+  width: 100%;
+  position: relative;
+  z-index: 10; // Garante que fique acima das estrelas
+
+  .sobre-container {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      h2 {
+        font-size: 2.5rem;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .linha-brilho {
+        width: 80px;
+        height: 4px;
+        background: var(--gradiente1); // Usa o gradiente do seu index.scss
+        border-radius: 4px;
+        box-shadow: 0 0 15px var(--neon-purple);
+      }
+    }
+
+    .sobre-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      // Caixas com efeito Glassmorphism (Vidro Translúcido)
+      .texto-box, .skills-box {
+        background: rgba(13, 14, 21, 0.4); // Fundo escuro com transparência
+        border: 1px solid rgba(176, 38, 255, 0.2); // Borda roxa bem suave
+        padding: 2rem;
+        border-radius: 16px;
+        backdrop-filter: blur(8px); // O segredo do vidro: embaça o que tem atrás
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .texto-box {
+        p {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: var(--text-muted);
+          margin-bottom: 1.5rem;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+
+          strong {
+            color: var(--text-light);
+            font-weight: 500;
+          }
+        }
+
+        .idiomas {
+          margin-top: 2rem;
+          padding-top: 1.5rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          color: var(--text-muted);
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+        }
+      }
+
+      .skills-box {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        border-color: rgba(45, 91, 255, 0.2); // Borda azul para diferenciar
+
+        .skill-category {
+          h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+          }
+
+          .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            span {
+              background: rgba(45, 91, 255, 0.1); // Fundo azul translúcido
+              color: var(--text-light);
+              border: 1px solid var(--neon-blue);
+              padding: 0.5rem 1rem;
+              border-radius: 30px;
+              font-size: 0.9rem;
+              font-family: var(--font-sans);
+              transition: all 0.3s ease;
+              cursor: default;
+
+              &:hover {
+                background: var(--neon-blue);
+                box-shadow: 0 0 15px rgba(45, 91, 255, 0.5);
+                transform: translateY(-3px); // Efeito de pular ao passar o mouse
+              }
+            }
+
+            // Estilo diferente para as Soft Skills
+            &.soft span {
+              border-color: var(--neon-purple);
+              background: rgba(176, 38, 255, 0.1);
+
+              &:hover {
+                background: var(--neon-purple);
+                box-shadow: 0 0 15px rgba(176, 38, 255, 0.5);
+              }
+            }
+          }
+        }
+      }
+
+      // --- LAYOUT DESKTOP LADO A LADO ---
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: stretch;
+
+        .texto-box {
+          flex: 3; // O texto ocupa um pouco mais de espaço
+          padding: 3rem;
+          
+          p {
+            font-size: 1.1rem;
+          }
+        }
+
+        .skills-box {
+          flex: 2; // As skills ficam mais compactas ao lado
+          padding: 3rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,175 @@
+.about-section {                       
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 90vh;
+  width: 100%;
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1280px;
+    gap: 3rem;
+
+    .about-title {
+      text-align: center;
+
+      h2 {
+        font-size: var(--titulo-mob);
+        font-weight: 700;
+
+        span {
+          background: var(--gradiente1);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+
+      img {
+        width: 100%;
+        max-width: 200px;
+        border-radius: 50%;
+      }
+
+      .about-image-wrapper {
+        position: relative;
+        margin-top: 2rem;
+        border-radius: 50%;
+        z-index: 1;
+        display: inline-block;
+
+        img {
+          display: block;
+          max-width: 100%;
+          width: 200px;
+          height: auto;
+          border-radius: 50%;
+          background-color: var(--bg-dark);
+          object-fit: cover;
+        }
+
+        // A Aura Animada que fica atrás da foto
+        &::after {
+          content: "";
+          position: absolute;
+          top: -4px; 
+          left: -4px;
+          right: -4px; 
+          bottom: -4px;
+          z-index: -1; 
+          border-radius: 55%; 
+
+          // O gradiente pegando as cores do seu tema
+          background: linear-gradient(270deg, var(--neon-purple, #b026ff), var(--neon-blue, #2d5bff), var(--neon-purple, #b026ff));
+          background-size: 200% 200%;
+
+          // Chama as animações (certifique-se de que os keyframes estão no seu arquivo index.scss ou no final deste arquivo)
+          animation:
+            girarGradiente 4s linear infinite,
+            pulsarBrilho 3s ease-in-out infinite alternate;
+        }
+      }
+    }
+
+    .about-text-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      p {
+        color: var(--text-muted);
+        line-height: 1.8;
+        font-size: var(--texto-mob);
+
+        span {
+            background: var(--gradiente1); // Ou a variável que ele tem no index.scss
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+      }
+
+      .about-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-top: 2rem;
+
+        .stat-card {
+          flex: 1;
+          min-width: 120px;
+          background: rgba(255, 255, 255, 0.03); 
+          border: 1px solid rgba(255, 255, 255, 0.1); 
+          border-radius: 12px;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(176, 38, 255, 0.15); // Brilho neon leve no hover
+            border-color: rgba(176, 38, 255, 0.4);
+          }
+
+          h3 {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            font-size: var(--texto-mob);
+            color: var(--text-muted);
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    // Desktop
+    @media (min-width: 768px) {
+      flex-direction: row; // Lado a lado
+      justify-content: space-between;
+
+      .about-title {
+        width: 40%; // Ocupa menos da metade
+
+        h2 {
+          font-size: var(--titulo);
+        }
+
+        .about-image-wrapper img {
+          display: block;
+          max-width: 100%;
+          width: 300px; 
+          height: auto;
+          border-radius: 50%; 
+          background-color: var(--bg-dark);
+          object-fit: cover;
+        }
+
+
+      }
+
+      .about-text-area {
+        width: 60%; // Ocupa a outra parte
+
+        p {
+          font-size: var(--texto);
+
+        }
+      }
+
+      .about-stats .stat-card {
+        h3 {
+          font-size: 1.2rem !important;
+        }
+      }
+    }
+  }
+}

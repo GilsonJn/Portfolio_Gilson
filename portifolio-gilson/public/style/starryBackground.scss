@@ -22,8 +22,8 @@
     width: 1px;
     height: 1px;
     background: transparent;
-    box-shadow: gerar-estrelas(400);
-    animation: piscar 2s infinite alternate;
+    box-shadow: gerar-estrelas(800);
+    animation: piscar 1.5s infinite alternate;
   }
 
   // Camada 2: Estrelas médias, piscam em tempo diferente
@@ -31,8 +31,8 @@
     width: 2px;
     height: 2px;
     background: transparent;
-    box-shadow: gerar-estrelas(150);
-    animation: piscar 4s infinite alternate-reverse;
+    box-shadow: gerar-estrelas(300);
+    animation: piscar 2s infinite alternate-reverse;
   }
 
   // Camada 3: Estrelas maiores, mais raras, piscam mais devagar
@@ -40,8 +40,60 @@
     width: 3px;
     height: 3px;
     background: transparent;
-    box-shadow: gerar-estrelas(50);
-    animation: piscar 6s infinite alternate;
+    box-shadow: gerar-estrelas(100);
+    animation: piscar 4s infinite alternate;
+  }
+
+  .camada-cadentes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-45deg); // Inclina a camada para as estrelas caírem na diagonal
+    pointer-events: none; // Garante que não atrapalhe os cliques no site
+
+    .cadente {
+      position: absolute;
+      width: 4px; // Tamanho da "cabeça" da estrela
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8);
+      opacity: 0; // Começa invisível
+
+      // A cauda da estrela cadente
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 150px; // Comprimento da cauda
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+      }
+
+      // Usando um loop SCSS para gerar atrasos e posições aleatórias
+      // Se você adicionou 5 divs no JSX, o loop vai até 5
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          // Posição inicial aleatória
+          top: random(100) * 1%;
+          left: random(100) * 1%;
+          
+          // Tempo de queda aleatório entre 2s e 4s
+          animation-duration: (random(2) + 2) * 1s; 
+          
+          // Demora aleatória para começar a cair (entre 0s e 10s)
+          // Isso faz com que não caiam todas de uma vez
+          animation-delay: random(10) * 10s; 
+          
+          animation-name: quedaCadente;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in;
+        }
+      }
+    }
   }
 }
 
@@ -52,5 +104,21 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+// Animação da estrela cadente cruzando a tela
+@keyframes quedaCadente {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    // Distância que ela percorre antes de sumir
+    transform: translateX(-1500px); 
+    opacity: 0;
   }
 }

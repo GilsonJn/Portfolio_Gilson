@@ -1,0 +1,696 @@
+/* ========================================= */
+/* --- 1. ESTILOS BASE (MOBILE-FIRST) --- */
+/* ========================================= */
+
+.projetos-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    width: 100%;
+    min-height: 110vh;
+    height: auto;
+    margin-top: 100px;
+    background-image: url('../img/planeta.svg');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .projetos-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1280px;
+        gap: 2rem;
+
+        .projetos-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+
+            .projetos-title {
+                h2 {
+                    font-size: var(--titulo-mob);
+                    font-weight: 700;
+                    color: var(--text-light);
+                    margin-top: -120px;
+
+                    span {
+                        background: var(--gradiente1);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+            }
+        }
+
+        .projetos-filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            padding-bottom: 15px;
+            margin-bottom: 1rem;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .btn-filtro {
+                background: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: var(--text-muted);
+                padding: 0.5rem 1rem;
+                border-radius: 30px;
+                font-family: var(--font-mono);
+                font-size: var(--texto-mob);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                white-space: nowrap;
+
+                &:hover {
+                    color: var(--text-light);
+                    border-color: rgba(7, 3, 3, 0.5);
+                }
+
+                &.ativo {
+                    background: var(--neon-purple);
+                    color: var(--text-light);
+                    border-color: var(--neon-purple);
+                    box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
+                }
+            }
+        }
+
+        /* --- WRAPPER E CARROSSEL EM LOOP INFINITO --- */
+        .carrossel-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            .projetos-container {
+                width: 100%;
+
+                /* 1. MODO MOBILE (GRELHA 1x1) */
+                &.modo-grid {
+                    display: grid;
+                    padding: 0 0 3rem 0;
+                    grid-template-columns: repeat(1fr);
+                    gap: 1rem;
+
+                    .projeto-card {
+                        width: 100%;
+                    }
+                }
+
+                /* 2. MODO DESKTOP (CARROSSEL) */
+                &.modo-carrossel {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+                    margin-top: 50px;
+                    padding: 2rem 0 3rem 0;
+                    overflow-x: auto;
+                    cursor: grab;
+                    scroll-behavior: auto;
+                    -webkit-overflow-scrolling: touch;
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    &.arrastando {
+                        cursor: grabbing;
+                    }
+
+                    .projeto-card {
+                        flex: 0 0 auto;
+                        width: 320px;
+                    }
+                }
+
+                .projeto-card {
+                    background: rgba(16, 1, 20, 0.623);
+                    border: 2px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 16px;
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+
+                    &:hover {
+                        transform: translateY(-8px) scale(1.02);
+                        box-shadow: 0 10px 30px rgba(176, 38, 255, 0.2);
+                        border-color: rgba(176, 38, 255, 0.4);
+                    }
+
+                    .projeto-imagem {
+                        width: 100%;
+                        height: 120px;
+                        overflow: hidden;
+                        position: relative;
+
+                        /* Imagem Real */
+                        .img-card-real {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.5s ease;
+                        }
+
+                        /* Efeito de zoom na imagem */
+                        &:hover .img-card-real {
+                            transform: scale(1.05);
+                        }
+
+                        /* ========================================= */
+                        /* PLACEHOLDER: MAIS DISCRETO E LENTO        */
+                        /* ========================================= */
+                        .img-placeholder {
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            
+                            /* Fundo ultra transparente */
+                            background: linear-gradient(
+                                135deg, 
+                                rgba(45, 90, 255, 0.176) 0%,   
+                                rgba(175, 38, 255, 0.123) 50%, 
+                                rgba(5, 5, 8, 0.331) 100%      
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            z-index: 1;
+                            overflow: hidden;
+
+                            /* Texto apagado e com pulso lento */
+                            .texto-piscar {
+                                color: rgba(220, 190, 240, 0.605); // Cor bem lavada
+                                font-size: 0.8rem;
+                                font-family: var(--font-mono);
+                                letter-spacing: 2px;
+                                text-transform: uppercase;
+                                animation: piscar 4s ease-in-out infinite; // Pulso longo e suave
+                                text-shadow: 0 0 3px rgba(176, 38, 255, 0.15); // Sem estourar a tela
+                                z-index: 3;
+                            }
+                        }
+                    }
+
+                    .projeto-info {
+                        padding: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1;
+
+                        h3 {
+                            font-size: var(--texto);
+                            color: var(--text-light);
+                            margin-bottom: 0.5rem;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        .desc-mobile {
+                            color: var(--text-muted);
+                            font-size: var(--texto-mob);
+                            line-height: 1.4;
+                            margin-bottom: 1rem;
+                            flex: 1;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                        }
+
+                        .projeto-techs {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 0.4rem;
+                            margin-bottom: 1rem;
+
+                            .tech-tag {
+                                font-size: 0.65rem;
+                                padding: 0.3rem 0.5rem;
+                                border-radius: 20px;
+                                background: rgba(3, 22, 90, 0.664);
+                                color: var(--neon-blue);
+                                border: 1px solid rgba(45, 90, 255, 0.564);
+                            }
+                        }
+
+                        .projeto-links {
+                            display: flex;
+                            gap: 0.5rem;
+
+                            button {
+                                padding: 0.6rem 0;
+                                border-radius: 30px;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                            }
+
+                            .btn-primary {
+                                background: var(--gradiente1);
+                                color: var(--text-light);
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ========================================= */
+/* --- 2. MODAL PAINEL FUTURISTA (HUD) --- */
+/* ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 8, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 1rem;
+
+    .modal-hud {
+        width: 100%;
+        max-width: 800px;
+        max-height: 90vh;
+        background: rgba(13, 14, 21, 0.95);
+        border: 1px solid rgba(45, 91, 255, 0.4);
+        box-shadow: 0 0 30px rgba(45, 91, 255, 0.15), inset 0 0 20px rgba(45, 91, 255, 0.1);
+        border-radius: 8px;
+        position: relative;
+        overflow-y: auto;
+        animation: bootTerminal 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--neon-blue);
+            pointer-events: none;
+        }
+
+        &::before {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        &::after {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .hud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(45, 91, 255, 0.2);
+            background: rgba(45, 91, 255, 0.05);
+
+            .hud-status {
+                color: var(--neon-blue);
+                font-family: var(--font-mono);
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+                animation: piscar 2s infinite;
+            }
+
+            .btn-fechar {
+                background: transparent;
+                border: none;
+                color: rgba(255, 60, 60, 0.8);
+                font-family: var(--font-mono);
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s;
+
+                &:hover {
+                    color: #ff3c3c;
+                    text-shadow: 0 0 10px #ff3c3c;
+                }
+            }
+        }
+
+        .hud-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .hud-titulo-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .hud-titulo {
+                    font-size: 2rem;
+                    color: var(--text-light);
+                    margin: 0;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+                }
+
+                .hud-categoria-tag {
+                    font-family: var(--font-mono);
+                    color: var(--neon-purple);
+                    border: 1px solid var(--neon-purple);
+                    padding: 0.2rem 0.6rem;
+                    font-size: 0.8rem;
+                    display: inline-block;
+                    align-self: flex-start;
+                    background: rgba(176, 38, 255, 0.1);
+                }
+            }
+
+            .hud-display-midia {
+                width: 100%;
+                height: 250px;
+                background: #050508;
+                border: 1px solid rgba(176, 38, 255, 0.3);
+                border-radius: 4px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+
+                /* Estilo do Iframe do Youtube e Imagem */
+                .midia-hud {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    position: relative;
+                    z-index: 1;
+                    opacity: 0.9;
+                    border: none; // Remove bordas default do iframe
+                }
+
+                .scanline {
+                    position: absolute;
+                    width: 100%;
+                    height: 5px;
+                    background: rgba(255, 255, 255, 0.1);
+                    opacity: 0.5;
+                    animation: scanline 4s linear infinite;
+                    pointer-events: none;
+                    z-index: 2;
+                }
+
+                .sinal-alerta {
+                    color: rgba(176, 38, 255, 0.7);
+                    font-family: var(--font-mono);
+                    letter-spacing: 2px;
+                    font-size: 0.9rem;
+                    z-index: 1;
+                }
+            }
+
+            .hud-specs {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                border-top: 1px solid rgba(45, 91, 255, 0.2);
+                border-bottom: 1px solid rgba(45, 91, 255, 0.2);
+                padding: 1rem 0;
+                background: repeating-linear-gradient(45deg,
+                        transparent,
+                        transparent 10px,
+                        rgba(45, 91, 255, 0.03) 10px,
+                        rgba(45, 91, 255, 0.03) 20px);
+
+                .spec-item {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.3rem;
+
+                    .spec-label {
+                        color: rgba(255, 255, 255, 0.4);
+                        font-family: var(--font-mono);
+                        font-size: 0.75rem;
+                        letter-spacing: 1px;
+                    }
+
+                    .spec-value {
+                        color: var(--neon-blue);
+                        font-family: var(--font-mono);
+                        font-size: 0.95rem;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            .hud-dados {
+                .texto-tecnico {
+                    color: var(--text-muted);
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                    font-family: var(--font-mono);
+                    border-left: 2px solid var(--neon-purple);
+                    padding-left: 1rem;
+                }
+
+                .hud-acoes {
+                    margin-top: 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    .btn-hud-secundario {
+                        background: transparent;
+                        color: var(--text-muted);
+                        border: 1px dashed rgba(255, 255, 255, 0.3);
+                        padding: 0.8rem 1.5rem;
+                        text-align: center;
+                        font-family: var(--font-mono);
+                        font-size: 0.9rem;
+                        text-decoration: none;
+                        transition: all 0.3s;
+
+                        &:hover {
+                            color: var(--text-light);
+                            border: 1px dashed var(--text-light);
+                            background: rgba(255, 255, 255, 0.05);
+                        }
+                    }
+
+                    .btn-acessar-sistema {
+                        background: rgba(45, 91, 255, 0.1);
+                        color: var(--neon-blue);
+                        border: 1px solid var(--neon-blue);
+                        padding: 0.8rem 1.5rem;
+                        text-align: center;
+                        font-family: var(--font-mono);
+                        font-size: 0.9rem;
+                        text-decoration: none;
+                        transition: all 0.3s;
+                        box-shadow: 0 0 10px rgba(45, 91, 255, 0.2);
+
+                        &:hover {
+                            background: var(--neon-blue);
+                            color: #000;
+                            box-shadow: 0 0 20px rgba(45, 91, 255, 0.6);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ========================================= */
+/* --- 3. ANIMAÇÕES GERAIS --- */
+/* ========================================= */
+
+@keyframes deslizarCarrossel {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-100% - 2rem));
+    }
+}
+
+@keyframes bootTerminal {
+    0% {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+        filter: brightness(2) contrast(1.5);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        filter: brightness(1) contrast(1);
+    }
+}
+
+@keyframes scanline {
+    0% {
+        top: -5%;
+    }
+
+    100% {
+        top: 105%;
+    }
+}
+
+@keyframes piscar {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* ========================================= */
+/* --- 4. MEDIA QUERIES (DESKTOP E TABLET) ---*/
+/* ========================================= */
+
+/* TABLET (A partir de 768px) */
+@media (min-width: 768px) {
+
+    /* --- Ajustes do Carrossel e Header --- */
+    .projetos-section {
+        margin-top: 200px;
+
+        .projetos-content {
+            .projetos-header {
+                display: none;
+            }
+
+            .projetos-filtros {
+                .btn-filtro {
+                    font-size: calc(var(--texto) - 0.2rem);
+                }
+            }
+
+            .carrossel-wrapper {
+                .projetos-container {
+
+                    /* Restaura os tamanhos grandes no Desktop */
+                    .projeto-card {
+                        background: rgba(255, 255, 255, 0.03);
+
+                        .projeto-imagem {
+                            height: 180px;
+
+                            /* NOVA LÓGICA: Oculta a imagem no desktop por defeito */
+                            .img-card-real {
+                                opacity: 0;
+                                visibility: hidden;
+                            }
+                        }
+
+                        .projeto-info {
+                            padding: 1.2rem;
+
+                            h3 {
+                                white-space: normal;
+                                margin-bottom: 0.8rem;
+                            }
+
+                            .desc-mobile {
+                                font-size: 0.95rem;
+                                -webkit-line-clamp: unset;
+                            }
+
+                            .projeto-techs .tech-tag {
+                                font-size: 0.75rem;
+                                background: rgba(45, 91, 255, 0.1);
+                                border: 1px solid rgba(45, 91, 255, 0.2);
+                            }
+
+                            .projeto-links button {
+                                font-size: 0.9rem;
+                            }
+                        }
+
+                        /* EFEITO DE HOVER (Com a sua animação intacta e revelando a imagem) */
+                        &:hover {
+                            transform: scale(1.00) translateY(-15px);
+                            box-shadow: 0 20px 50px rgba(176, 38, 255, 0.4);
+                            z-index: 2;
+                            border-color: transparent;
+                            background:
+                                linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+                                var(--gradiente1) border-box;
+
+                            /* Revela a imagem suavemente e aplica o scale */
+                            .projeto-imagem .img-card-real {
+                                opacity: 1;
+                                visibility: visible;
+                                transform: scale(1.05);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* --- Ajustes do Modal HUD --- */
+    .modal-overlay {
+        .modal-hud {
+            .hud-body {
+                .hud-titulo-wrapper {
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                .hud-display-midia {
+                    height: 350px;
+                }
+
+                .hud-specs {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                .hud-dados .hud-acoes {
+                    flex-direction: row;
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}
