@@ -1,0 +1,461 @@
+/* ========================================= */
+/* --- 1. ESTILOS BASE (MOBILE-FIRST) --- */
+/* ========================================= */
+
+.skills-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem 1.5rem;
+  /* Menos padding lateral no mobile */
+  width: 100%;
+  min-height: 80vh;
+
+  /* ========================================= */
+  /* FUNDO: INTERFACE TÁTICA DE NAVE (HUD)     */
+  /* ========================================= */
+  //background-color: var(--bg-dark, #050508);
+  /* Fundo base infinito e escuro */
+  background-image:
+    /* 1. Brilho central do reator/ecrã (Azul Neon suave) */
+    radial-gradient(circle at 50% 50%, rgba(45, 91, 255, 0.08) 0%, transparent 60%),
+
+    /* 2. Malha Tática Horizontal (Roxo Neon muito transparente) */
+    linear-gradient(rgba(176, 38, 255, 0.04) 1px, transparent 1px),
+
+    /* 3. Malha Tática Vertical (Roxo Neon muito transparente) */
+    linear-gradient(90deg, rgba(176, 38, 255, 0.04) 1px, transparent 1px);
+
+  /* Define o tamanho dos quadrados da grelha (40x40px) */
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-position: center center;
+
+  /* Adiciona uma "sombra" interna para escurecer as bordas da tela */
+  //box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+
+  .skills-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    gap: 2.5rem;
+
+    .skills-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      .space-title {
+        font-size: var(--titulo-mob, 2.2rem);
+        font-weight: 800;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 0;
+
+        /* O EFEITO DE FEIXE DE LUZ (SHINE) */
+        background: linear-gradient(90deg,
+            var(--neon-blue, #2d5bff) 0%,
+            var(--text-light, #fff) 25%,
+            /* O ponto de luz branco */
+            var(--neon-purple, #b026ff) 50%,
+            var(--text-light, #fff) 75%,
+            /* Repete a luz para o loop perfeito */
+            var(--neon-blue, #2d5bff) 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: brilhoEspacial 4s linear infinite;
+
+        /* Brilho neon suave em volta das letras */
+        filter: drop-shadow(0 0 8px rgba(176, 38, 255, 0.4));
+      }
+
+      //* O TRILHO DO LETREIRO */
+      .cyber-subtitle-wrapper {
+        width: 100vw;
+        /* Ocupa a largura total da tela no mobile */
+        max-width: 100%;
+        overflow: hidden;
+        /* Corta o texto que sai da tela */
+        white-space: nowrap;
+        /* Impede o texto de descer para a linha de baixo */
+        margin-top: 0.5rem;
+      }
+
+      /* O TEXTO QUE CORRE */
+      .cyber-subtitle {
+        display: inline-block;
+        font-family: var(--font-mono, monospace);
+        color: var(--neon-blue, #2d5bff);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+        /* Animação lenta de 12 segundos, linear (sem acelerar ou travar) e em loop infinito */
+        animation: letreiroTerminal 12s linear infinite;
+      }
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      /* Mobile: 1 coluna */
+      gap: 1.5rem;
+
+      .skill-wrapper {
+        position: relative;
+
+        /* O Foguete no Card 1 */
+        .rocket-icon {
+          position: absolute;
+          top: -25px;
+          left: -10px;
+          font-size: 2rem;
+          /* Menor no mobile */
+          transform: rotate(-15deg);
+          filter: drop-shadow(0 0 10px rgba(176, 38, 255, 0.5));
+          animation: flutuar 3s ease-in-out infinite alternate;
+          z-index: 10;
+        }
+      }
+
+      .skill-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        /* A espessura da borda é controlada por este padding */
+        padding: 2px;
+
+        /* BORDA ESTÁTICA PADRÃO (Efeito da seção Hero) */
+        background: var(--gradiente1, linear-gradient(135deg, #2d5bff, #b026ff));
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* O GRADIENTE GIRATÓRIO (Oculto por defeito) */
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: conic-gradient(transparent,
+              transparent,
+              transparent,
+              var(--neon-purple, #b026ff),
+              var(--neon-blue, #2d5bff));
+          animation: spinBorder 4s linear infinite;
+          z-index: 0;
+          opacity: 0;
+          /* Esconde a animação */
+          transition: opacity 0.4s ease;
+          /* Transição suave ao revelar */
+        }
+
+        /* AÇÕES NO HOVER */
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(176, 38, 255, 0.25);
+
+          /* Revela a borda animada por cima da borda estática */
+          &::before {
+            opacity: 1;
+          }
+        }
+
+        /* A "TAMPA" DO CARTÃO (O que cobre o centro e deixa só a borda de fora) */
+        .card-inner {
+          position: relative;
+          background: var(--bg-dark, #0d0e15);
+          /* Tem que ser a cor exata do seu fundo do site */
+          border-radius: 14px;
+          /* Ligeiramente menor que a borda exterior */
+          width: 100%;
+          height: 100%;
+          padding: 1.5rem 1rem;
+          /* Proporção mais compacta para mobile */
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .skill-title {
+          font-family: var(--font-mono, monospace);
+          font-size: 1rem;
+          font-weight: 600;
+          margin-bottom: 1.2rem;
+          text-align: center;
+          letter-spacing: 1px;
+          background: linear-gradient(90deg, var(--neon-blue, #2d5bff), var(--neon-purple, #b026ff), #ff8aff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .skill-icons {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 1.2rem;
+
+          /* NOVA ESTRUTURA: Container do Ícone + Tooltip */
+          .skill-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            img {
+              width: 35px;
+              /* Tamanho mobile */
+              height: 35px;
+              object-fit: contain;
+              transition: transform 0.3s ease, filter 0.3s ease;
+            }
+
+            img.icon-largo {
+              width: auto;
+              /* Força o dobro da largura no mobile */
+              height: 45px;
+              /* Trava a altura para não ficar gigante */
+              object-fit: contain;
+            }
+
+
+            /* ESTILO DO TOOLTIP FUTURISTA */
+            .tooltip {
+              position: absolute;
+              bottom: -35px;
+              /* Fica abaixo do ícone */
+              background: rgba(13, 14, 21, 0.95);
+              /* Fundo bem escuro */
+              color: var(--neon-blue, #2d5bff);
+              border: 1px solid rgba(45, 91, 255, 0.3);
+              padding: 4px 10px;
+              border-radius: 4px;
+              font-size: 0.75rem;
+              font-family: var(--font-mono, monospace);
+              white-space: nowrap; // Impede que o nome quebre em duas linhas
+              pointer-events: none;
+              /* O rato ignora a caixa do texto */
+
+              /* Estado Inicial (Invisível e um pouco subido) */
+              opacity: 0;
+              visibility: hidden;
+              transform: translateY(-10px);
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: 0 0 10px rgba(45, 91, 255, 0.15);
+              z-index: 10;
+            }
+
+            /* ANIMAÇÃO NO HOVER */
+            &:hover {
+              img {
+                transform: scale(1.2);
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+              }
+
+              /* O Tooltip aparece e desce para o lugar certo */
+              .tooltip {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+              }
+            }
+          }
+
+          /* Ajustes para a secção "Outras" (Textos soltos e MySQL) */
+          &.text-icons {
+            gap: 1.5rem;
+            /* Um pouco mais de espaço */
+
+            span {
+              color: var(--text-light, #fff);
+              font-size: var(--texto-mob);
+              font-weight: 500;
+              font-family: var(--font-sans, sans-serif);
+            }
+
+          }
+        }
+
+        /* Grid Interna das Habilidades Sociais */
+        .social-skills-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.8rem 1rem;
+          width: 100%;
+          text-align: center;
+
+          span {
+            color: var(--text-light, #fff);
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: var(--font-sans, sans-serif);
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: var(--neon-blue, #2d5bff);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ========================================= */
+/* --- 2. ANIMAÇÕES --- */
+/* ========================================= */
+@keyframes flutuar {
+  0% {
+    transform: translateY(0) rotate(-15deg);
+  }
+
+  100% {
+    transform: translateY(-10px) rotate(-10deg);
+  }
+}
+
+@keyframes spinBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================= */
+/* --- 3. ANIMAÇÕES --- */
+/* ========================================= */
+
+
+/* Animação do Feixe de Luz varrendo o título */
+@keyframes brilhoEspacial {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Animação do Letreiro no Mobile (Da direita para a esquerda) */
+@keyframes letreiroTerminal {
+  from {
+    transform: translateX(-100%);
+    /* Começa totalmente fora da tela, na direita */
+  }
+
+  to {
+    transform: translateX(100vw);
+    /* Anda até sair totalmente pela esquerda */
+  }
+}
+
+/* ========================================= */
+/* --- 3. MEDIA QUERIES (DESKTOP E TABLET) ---*/
+/* ========================================= */
+
+@media (min-width: 768px) {
+  .skills-section {
+    padding: 15rem 2rem;
+    margin-top: 100px;
+
+    .skills-content {
+
+      /* Aumenta o título no Desktop */
+      .skills-header .space-title {
+        font-size: var(--titulo);
+      }
+
+      /* DESLIGA O LETREIRO NO DESKTOP */
+      .skills-header .cyber-subtitle-wrapper {
+        width: auto;
+        /* Tira a largura total */
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        /* Volta a centrar */
+      }
+
+      .skills-header .cyber-subtitle {
+        font-size: 0.9rem;
+        /* Substitui a animação de correr pela animação de piscar */
+        animation: piscar 2s infinite;
+        transform: none;
+        /* Remove o deslocamento lateral */
+      }
+
+      .skills-grid {
+        /* No Desktop, a grelha tem 2 colunas */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+
+        /* O último cartão ocupa a largura inteira */
+        .skill-wrapper.full-width {
+          grid-column: 1 / -1;
+        }
+
+        .skill-wrapper {
+          .rocket-icon {
+            font-size: 2.5rem;
+            /* Foguete volta ao tamanho normal */
+            top: -20px;
+            left: -15px;
+          }
+        }
+
+        .skill-card {
+          .card-inner {
+            padding: 2rem 1.5rem;
+            min-height: 190px;
+          }
+
+          .skill-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .skill-icons {
+            gap: 1.5rem;
+
+            .skill-item {
+
+              /* Ícones Largos no Desktop (Ainda MAIORES aqui) */
+              img.icon-largo {
+                width: auto !important;
+                /* Estica bem no desktop */
+                height: 55px !important;
+              }
+            }
+
+            /* Secção "Outras" (Textos soltos) */
+            &.text-icons {
+              span {
+                font-size: 1rem;
+              }
+            }
+          }
+
+          .social-skills-grid {
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 colunas no desktop */
+            gap: 1.5rem;
+            padding: 0 2rem;
+
+            span {
+              font-size: 1.05rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

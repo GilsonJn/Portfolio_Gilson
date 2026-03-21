@@ -1,4 +1,4 @@
-.about-section {                       
+.about-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,12 +54,12 @@
         &::after {
           content: "";
           position: absolute;
-          top: -4px; 
+          top: -4px;
           left: -4px;
-          right: -4px; 
+          right: -4px;
           bottom: -4px;
-          z-index: -1; 
-          border-radius: 55%; 
+          z-index: -1;
+          border-radius: 55%;
 
           // O gradiente pegando as cores do seu tema
           background: linear-gradient(270deg, var(--neon-purple, #b026ff), var(--neon-blue, #2d5bff), var(--neon-purple, #b026ff));
@@ -69,6 +69,18 @@
           animation:
             girarGradiente 4s linear infinite,
             pulsarBrilho 3s ease-in-out infinite alternate;
+        }
+
+        .rocket-icon {
+          position: absolute;
+          top: 10px;
+          left: -5px;
+          font-size: 2rem;
+          /* Menor no mobile */
+          transform: rotate(-15deg);
+          filter: drop-shadow(0 0 10px rgba(176, 38, 255, 0.5));
+          animation: flutuar 5s ease-in-out infinite alternate;
+          z-index: 10;
         }
       }
     }
@@ -84,10 +96,10 @@
         font-size: var(--texto-mob);
 
         span {
-            background: var(--gradiente1); // Ou a variável que ele tem no index.scss
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
+          background: var(--gradiente1); // Ou a variável que ele tem no index.scss
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
       }
 
       .about-stats {
@@ -99,8 +111,8 @@
         .stat-card {
           flex: 1;
           min-width: 120px;
-          background: rgba(255, 255, 255, 0.03); 
-          border: 1px solid rgba(255, 255, 255, 0.1); 
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 12px;
           padding: 1.5rem;
           display: flex;
@@ -135,6 +147,7 @@
     @media (min-width: 768px) {
       flex-direction: row; // Lado a lado
       justify-content: space-between;
+      margin-top: 150px;
 
       .about-title {
         width: 40%; // Ocupa menos da metade
@@ -146,9 +159,9 @@
         .about-image-wrapper img {
           display: block;
           max-width: 100%;
-          width: 300px; 
+          width: 300px;
           height: auto;
-          border-radius: 50%; 
+          border-radius: 50%;
           background-color: var(--bg-dark);
           object-fit: cover;
         }

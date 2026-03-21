@@ -1,0 +1,130 @@
+/* ========================================= */
+/* --- 1. ESTILOS BASE (MOBILE-FIRST) --- */
+/* ========================================= */
+
+.contact-section {
+    position: relative;
+    width: 100%;
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 2rem;
+    overflow: hidden;
+
+    /* CONTEÚDO (Textos e Ícones) */
+    .contact-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+        margin-bottom: 0%;
+        /* Espaço para o planeta em baixo no mobile */
+        width: 100%;
+        max-width: 1280px;
+
+        .contact-title {
+            font-size: calc(var(--titulo-mob) - 0.4rem);
+            font-family: var(--font-sans, sans-serif);
+            font-weight: 600;
+            color: var(--text-light, #fff);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.5rem;
+
+            .social-icon {
+                color: var(--text-light, #fff);
+                width: 30px;
+                height: 30px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                transition: transform 0.3s ease, color 0.3s ease, filter 0.3s ease;
+
+                svg {
+                    width: 80%;
+                    height: 80%;
+                }
+
+                /* Efeito Neon ao passar o rato */
+                &:hover {
+                    color: var(--neon-blue, #2d5bff);
+                    transform: translateY(-5px) scale(1.1);
+                    filter: drop-shadow(0 0 15px rgba(45, 91, 255, 0.6));
+                }
+            }
+        }
+    }
+
+    /* O PLANETA (Posicionamento e Animação) */
+    .planet-bg {
+        position: absolute;
+        bottom: -45%;
+        right: -40%;
+        width: 120vw;
+        /* Bem grande no telemóvel para dar o efeito de curva */
+        max-width: 600px;
+        z-index: 1;
+        opacity: 0.9;
+        pointer-events: none;
+        /* Impede que o planeta bloqueie cliques em links invisíveis */
+        animation: rotacaoPlanetaria 400s linear infinite;
+    }
+}
+
+/* ========================================= */
+/* --- 2. ANIMAÇÕES --- */
+/* ========================================= */
+@keyframes rotacaoPlanetaria {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================= */
+/* --- 3. MEDIA QUERIES (DESKTOP E TABLET) ---*/
+/* ========================================= */
+
+@media (min-width: 768px) {
+    .contact-section {
+        align-items: center;
+        min-height: 90vh;
+        margin-top: 200px;
+
+        .contact-content {
+            align-items: flex-start;
+            text-align: left;
+
+            .contact-title {
+                font-size: var(--titulo);
+                margin-bottom: 1rem;
+            }
+
+            .social-links {
+                gap: 1.2rem;
+
+                .social-icon {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        }
+
+        /* O Posicionamento exato do seu print screen */
+        .planet-bg {
+            bottom: -55%;
+            right: -13%;
+            height: 130vh;
+            max-width: 950px;
+        }
+    }
+}

@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: var(--alinhar-section);
+    padding: 12px 0px;
   }
 
   .nav-spacer {
@@ -94,6 +94,10 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+
+  .navbar .nav-wrap {
+    padding: 12px 16px;;
+  }
   .navbar .burger {
     display: block;
   }

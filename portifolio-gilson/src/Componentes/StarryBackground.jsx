@@ -16,6 +16,7 @@ const StarryBackground = () => {
         <div className="cadente"></div>
         <div className="cadente"></div>
       </div>
+
     </div>
   );
 };

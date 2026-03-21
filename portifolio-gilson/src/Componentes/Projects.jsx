@@ -100,7 +100,7 @@ const Projects = () => {
             <div className="projetos-content">
                 <div className="projetos-header">
                     <div className="projetos-title">
-                        <h2>Meus <span>Projetos</span></h2>
+                        <h2>MEUS <span>PROJETOS</span></h2>
                     </div>
                 </div>
 
@@ -114,46 +114,46 @@ const Projects = () => {
                         onMouseMove={handleMouseMove}
                         onMouseEnter={() => setIsHovered(true)}
                     >
-                        {displayProjetos.map((projeto, index) => (
+                       {displayProjetos.map((projeto, index) => (
                             <div className="projeto-card" key={`${projeto.titulo}-${index}`}>
-                                <div className="projeto-imagem">
+                                
+                                <div className="borda-animada"></div>
+                                <div className="card-inner"> 
+
+                                    <div className="projeto-imagem">
+                                        <div className="img-placeholder">
+                                            <div className="scanline"></div>
+                                            <span className="texto-piscar">SEM SINAL ): </span>
+                                        </div>
+                                        {projeto.imagemCard && (
+                                            <img src={projeto.imagemCard} alt={projeto.titulo} className="img-card-real" />
+                                        )}
+                                    </div>
                                     
-                                    {/* 1. O PLACEHOLDER FICA SEMPRE AQUI (Fica por trás da imagem se ela existir) */}
-                                    <div className="img-placeholder">
-                                        <span className="texto-piscar">Sinal Perdido ) :</span>
+                                    <div className="projeto-info">
+                                        <h3>{projeto.titulo}</h3>
+                                        <p className="desc-mobile">{projeto.descricao}</p>
+                                        <div className="projeto-techs">
+                                            {projeto.tecnologias.map((tech, i) => (
+                                                <span key={i} className="tech-tag">{tech}</span>
+                                            ))}
+                                        </div>
+                                        <div className="projeto-links">
+                                            <button 
+                                                onClick={(e) => {
+                                                    if (isDragging) e.preventDefault();
+                                                    else setProjetoSelecionado(projeto);
+                                                }} 
+                                                className="btn-primary" 
+                                                style={{width: '100%'}}
+                                            >
+                                                Saiba mais
+                                            </button>
+                                        </div>
                                     </div>
 
-                                    {/* 2. A IMAGEM REAL (No desktop começa invisível e aparece no hover, no mobile já aparece) */}
-                                    {projeto.imagemCard && (
-                                        <img src={projeto.imagemCard} alt={projeto.titulo} className="img-card-real" />
-                                    )}
-                                    
-                                </div>
-                                <div className="projeto-info">
-                                    <h3>{projeto.titulo}</h3>
-                                    <p className="desc-mobile">{projeto.descricao}</p>
-                                    <div className="projeto-techs">
-                                        {projeto.tecnologias.map((tech, i) => (
-                                            <span key={i} className="tech-tag">{tech}</span>
-                                        ))}
-                                    </div>
-                                    <div className="projeto-links">
-                                        <button 
-                                            // Lógica final: Só abre o modal se NÃO estiver a arrastar
-                                            onClick={(e) => {
-                                                if (isDragging) {
-                                                    e.preventDefault();
-                                                } else {
-                                                    setProjetoSelecionado(projeto);
-                                                }
-                                            }} 
-                                            className="btn-primary" 
-                                            style={{width: '100%'}}
-                                        >
-                                            Saiba mais
-                                        </button>
-                                    </div>
-                                </div>
+                                </div> {/* FECHAMOS A TAMPA AQUI */}
+
                             </div>
                         ))}
                     </div>

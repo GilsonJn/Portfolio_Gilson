@@ -8,8 +8,9 @@ const About = () => {
 
             <div className="about-content">
                 <div className="about-title">
-                    <h2>Sobre <span>Mim</span></h2>
+                    <h2>SOBRE <span>MIM</span></h2>
                     <div className="about-image-wrapper">
+                        <div className="rocket-icon">🚀</div>
                         <img src={fotoPerfil} alt="Foto de Gilson Dias" />
                     </div>
                 </div>
