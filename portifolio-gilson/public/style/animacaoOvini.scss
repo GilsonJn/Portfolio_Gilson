@@ -1,23 +1,95 @@
-.section-ovini {
-  position: relative; // Fundamental para o posicionamento relativo do wrapper
-  width: 100%;
-  min-height: 80vh; // Garante uma altura considerável para o trajeto vertical
-  overflow: hidden; // Impede barras de rolagem se o óvini sair da tela
-  background-color: transparent; // Ou a sua cor de fundo escura se preferir
-
-  .ovini-wrapper {
+.ovni-wrapper {
     position: absolute;
-    top: 50%; // Começa centralizado verticalmente
-    left: 10%; // Começa um pouco para a direita
-    transform: translate(-50%, -50%); // Centraliza o próprio óvini na posição
-    z-index: 5; // Joga por cima do fundo mas talvez atrás de textos se preferir
+    bottom: 30%; 
+    left: 50%;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0; /* Começa invisível para não piscar antes da animação */
+    
+    /* Animação de 12 segundos, repete infinitamente, com curva de aceleração suave */
+    animation: passagemOvni 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 
-    .ovini-icon {
-      width: 60px; // Ajuste o tamanho do óvini aqui
-      height: auto;
-      display: block;
-      /* Opcional: Adicionar um leve brilho neon ao óvini */
-      filter: drop-shadow(0 0 10px rgba(176, 38, 255, 0.5));
+    .ovni-img {
+        width: 100px; 
+        height: auto;
+        filter: drop-shadow(0 -5px 15px rgba(176, 38, 255, 0.4));
     }
-  }
+}
+
+/* === A GRANDE ANIMAÇÃO DE ENTRADA, ABDUÇÃO E FUGA === */
+@keyframes passagemOvni {
+    /* 0% a 10%: Escondido lá no alto, pequeno e invisível */
+    0%, 10% {
+        opacity: 0;
+        transform: translate(-50%, -150px) scale(0.2) rotate(-15deg);
+    }
+    
+    /* 20%: Chega a alta velocidade, passa um pouco do ponto (efeito de travagem) */
+    20% {
+        opacity: 1;
+        transform: translate(-50%, 15px) scale(1.05) rotate(5deg);
+    }
+    
+    /* 25%: Estabiliza em cima do nome */
+    25% {
+        transform: translate(-50%, -5px) rotate(-2deg);
+    }
+    
+    /* 25% a 65%: Fase de Abdução (Flutuando suavemente para cima e para baixo) */
+    45% {
+        transform: translate(-50%, 10px) rotate(2deg);
+    }
+    65% {
+        transform: translate(-50%, -5px) rotate(-2deg);
+        opacity: 1;
+    }
+    
+    /* 70%: Prepara para o "Salto" (Inclina o disco para trás) */
+    70% {
+        transform: translate(-50%, -5px) rotate(15deg) scale(1);
+        opacity: 1;
+    }
+    
+    /* 75% a 100%: Foge a velocidade de dobra para o céu e desaparece */
+    75%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -350px) rotate(25deg) scale(0.1);
+    }
+}
+
+/* === RESPONSIVIDADE (DESKTOP) === */
+@media (min-width: 768px) {
+    .ovni-wrapper {
+        bottom: 20%; 
+        
+        .ovni-img {
+            width: 190px; /* Disco maior no PC */
+        }
+    }
+
+    /* Versão da animação para ecrãs maiores (as distâncias têm de ser maiores) */
+    @keyframes passagemOvni {
+        0%, 10% {
+            opacity: 0;
+            transform: translate(-50%, -250px) scale(0.2) rotate(-15deg);
+        }
+        20% {
+            opacity: 1;
+            transform: translate(-50%, 15px) scale(1.05) rotate(5deg);
+        }
+        25% { transform: translate(-50%, -5px) rotate(-2deg); }
+        45% { transform: translate(-50%, 10px) rotate(2deg); }
+        65% { 
+            transform: translate(-50%, -5px) rotate(-2deg); 
+            opacity: 1;
+        }
+        70% {
+            transform: translate(-50%, -5px) rotate(15deg) scale(1);
+            opacity: 1;
+        }
+        75%, 100% {
+            opacity: 0;
+            transform: translate(-50%, -500px) rotate(25deg) scale(0.1);
+        }
+    }
 }

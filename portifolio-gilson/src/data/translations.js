@@ -6,17 +6,16 @@ export const translations = {
             about: "Sobre mim",
             projects: "Projetos",
             skills: "Habilidades",
-            contact: "Contato"
+            contact: "Contato",
+            cv: "DOWNLOAD CV"
         },
         hero: {
-            role: "Desenvolvedor Full-Stack",
-            description: "Explorando o universo do código para criar interfaces imersivas e sistemas robustos.",
-            cv: "Download CV"
+            role: "Desenvolvedor Full-Stack"
         },
         about: {
             title1: "SOBRE",
             title2: "MIM",
-            p1: "Sou estudante de Engenharia de Software, apaixonado por criar soluções tecnológicas que geram impacto real e facilitam o dia a dia das pessoas. Tenho forte interesse no desenvolvimento de aplicações web e em explorar a integração entre hardware e software.",
+            p1: "Sou estudante de Engenharia de Software, explorando o universo do código para criar interfaces imersivas e sistemas robustos que geram impacto real e facilitam o dia a dia das pessoas. ",
             p2Start: "Gosto de atuar em ambientes colaborativos onde posso unir ",
             p2Highlight: "criatividade, lógica e liderança",
             p2End: " para tirar ideias do papel e transformá-las em produtos funcionais.",
@@ -87,17 +86,16 @@ export const translations = {
             about: "About me",
             projects: "Projects",
             skills: "Skills",
-            contact: "Contact"
+            contact: "Contact",
+            cv: "DOWNLOAD CV"
         },
         hero: {
-            role: "Full-Stack Developer",
-            description: "Exploring the coding universe to create immersive interfaces and robust systems.",
-            cv: "Download CV"
+            role: "Full-Stack Developer"
         },
         about: {
             title1: "ABOUT",
             title2: "ME",
-            p1: "I am a Software Engineering student, passionate about building technological solutions that deliver real impact and simplify people's daily lives. I have a strong interest in web application development and exploring the integration between hardware and software.",
+            p1: "I am a Software Engineering student exploring the coding universe to create immersive interfaces and robust systems that generate real impact and simplify people's daily lives. I have a strong interest in web application development and the integration between hardware and software.",
             p2Start: "I enjoy working in collaborative environments where I can combine ",
             p2Highlight: "creativity, logic, and leadership",
             p2End: " to bring ideas to life and turn them into functional products.",

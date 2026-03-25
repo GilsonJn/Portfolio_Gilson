@@ -11,6 +11,7 @@
   left: 0;
   z-index: 10000;
   font-family: var(--font-sans);
+  font-size: var(--texto-mob);
   /* Fundo inicial: degradê escuro no topo que vai sumindo */
   background-image: linear-gradient(rgba(13, 14, 21, 0.8), rgba(13, 14, 21, 0));
   transition: all 0.4s ease;
@@ -56,7 +57,7 @@
     align-items: center;
     gap: 6px;
     font-family: var(--font-mono, monospace);
-    font-size: 0.85rem;
+    font-size: var(--texto-mob);
     color: var(--text-muted, #a0a0b0);
     /* Cor base mais apagada */
     cursor: pointer;
@@ -177,7 +178,7 @@
 
     a {
       color: var(--text-light);
-      font-weight: 500;
+      font-weight: 400;
       text-transform: uppercase;
       font-size: var(--texto-mob);
       letter-spacing: .04em;
@@ -190,6 +191,57 @@
       }
     }
   }
+
+  /* SEU BOTÃO ORIGINAL MANTIDO INTACTO */
+  .button {
+    order: -1;
+
+    /* Reduz um pouco a escala no mobile para caber tudo perfeitamente */
+    transform: scale(0.85);
+    transform-origin: left center;
+    margin: 0;
+
+    margin: 0 auto;
+    background: var(--gradiente2);
+    background-size: 200% 200%;
+    animation: girarGradiente 4s linear infinite;
+    border-radius: 30px;
+    padding: 1px;
+    width: fit-content;
+
+    .btn-cv {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      background: rgba(7, 8, 11, 0.699);
+      padding: 0.5rem 0.6rem;
+      border-radius: 30px;
+      font-family: var(--font-mono, monospace);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      span {
+        background: var(--gradiente1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        background-color: transparent;
+        box-shadow: 0 0 20px var(--neon-purple);
+
+        span {
+          background: var(--text-light, #fff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+  }
+
 }
 
 /* ========================================= */
@@ -273,6 +325,14 @@
           }
         }
       }
+    }
+
+    .button {
+      order: 3;
+      transform: scale(1);
+      /* Volta ao tamanho normal */
+      margin-left: 15px;
+      /* Dá um pequeno respiro entre o idioma e o botão */
     }
   }
 }

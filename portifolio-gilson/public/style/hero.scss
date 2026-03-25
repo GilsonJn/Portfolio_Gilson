@@ -16,126 +16,80 @@
     width: 100%;
     gap: 3rem;
 
-    h1 {
-      //color: var(--neon-purple);
-      span {
-          /* O EFEITO DE FEIXE DE LUZ (SHINE) APENAS NA PALAVRA */
-          background: linear-gradient(90deg,
-              var(--neon-blue, #2d5bff) 0%,
-              var(--text-light, #f1c0f4) 25%,
-              var(--neon-purple, #b026ff) 50%,
-              var(--text-light, #b3c1fa) 75%,
-              var(--neon-blue, #2d5bff) 100%);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: brilhoEspacial 7s linear infinite;
+    /* DEFINIMOS A SECTION DO TEXTO AQUI PARA O MOBILE TAMBÉM */
+    .text-section {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
 
-          /* Brilho neon suave em volta das letras */
-          filter: drop-shadow(0 0 8px rgba(176, 38, 255, 0.4));
-        }
-    }
-
-    h2 {
-      color: var(--text-muted);
-      font-weight: 100;
-      margin: 0%;
-    }
-
-    p {
-      line-height: 1.5;
-      max-width: 500px;
-      margin: 20px 0;
-    }
-
-    /* Container que faz a borda animada (O Gradiente que gira) */
-    .button {
-      margin: 0 auto;
-      box-shadow: 0 0 30px rgba(176, 38, 255, 0.4);
-      background: var(--gradiente2);
-      background-size: 200% 200%;
-      animation: girarGradiente 4s linear infinite;
-      border-radius: 30px;
-      padding: 2px; 
-      width: fit-content;
-
-      .btn-cv {
-        display: block; /* CRUCIAL: Como é uma tag <a>, precisa ser bloco para aceitar padding e largura corretamente */
-        text-decoration: none; /* Remove o sublinhado padrão dos links */
-        text-align: center; /* Centraliza o texto */
-        background: rgba(7, 8, 11, 0.95); /* Deixei um pouco mais escuro para o texto brilhar mais */
-        padding: 0.7rem 1rem; /* Padding lateral maior para dar aquele formato de "pílula" elegante */
-        border-radius: 30px;
-        font-family: var(--font-mono, monospace);
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        /* O texto com degradê */
-        span {
-          background: var(--gradiente1); 
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          font-weight: 600; /* Deixa a fonte um pouco mais encorpada */
-          transition: all 0.3s ease;
-        }
-
-        /* EFEITO HOVER */
-        &:hover {
-          background-color: transparent; /* Fica transparente e revela todo o gradiente que está a girar no fundo! */
-          box-shadow: 0 0 20px var(--neon-purple); /* Aumentei um pouco o brilho externo */
+      /* O PALCO DA ABDUÇÃO */
+      .abduction-container {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto; /* Centraliza no mobile */
+        /* Espaço para o feixe de luz cobrir o texto */
+        padding-top: 30px; 
         
+        h1 {
+          position: relative;
+          z-index: 10; /* Fica abaixo do OVNI que terá z-index 20 */
+          margin: 0;
+
           span {
-            background: var(--text-light, #fff); /* O texto fica totalmente branco brilhante */
+            /* SEU EFEITO ORIGINAL MANTIDO INTACTO */
+            background: linear-gradient(90deg,
+                var(--neon-blue, #2d5bff) 0%,
+                var(--text-light, #f1c0f4) 25%,
+                var(--neon-purple, #b026ff) 50%,
+                var(--text-light, #b3c1fa) 75%,
+                var(--neon-blue, #2d5bff) 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: brilhoEspacial 7s linear infinite;
+            filter: drop-shadow(0 0 8px rgba(176, 38, 255, 0.4));
           }
         }
       }
-    }
-  }
 
-  .image-section {
-    display: none;
+      h2 {
+        color: var(--text-muted);
+        font-weight: 100;
+        font-size: var(--texto-mod);
+        margin: 10px 0;
+      }
+    }
   }
 
 
   // Media Query para Desktop
   @media (min-width: 768px) {
-
     padding: 0;
 
     .hero-content {
-      flex-direction: row;
-      align-items: center;
-      text-align: left;
-
     }
 
     .text-section {
-      align-items: flex-start;
+      .abduction-container {
+        margin: 0; /* Alinha à esquerda no PC */
+        padding-top: 50px; /* Aumenta o espaço para o OVNI maior */
 
-      h1 {
-        font-size: 3rem;
-        font-weight: 500;
-        letter-spacing: 7.2px;
+        h1 {
+          font-size: 3rem;
+          font-weight: 500;
+          letter-spacing: 7.2px;
+        }
       }
 
       h2 {
         font-family: var(--font-mono);
-        font-size: 1.2rem;
+        font-size: 2.5rem;
         font-weight: 300;
         letter-spacing: 2.2px;
         color: var(--text-light);
-        margin: 5px 0 50px 0;
-      }
-
-      p {
-        display: none;
-      }
-
-      .button {
-        margin: 0;
+        margin: 50px 0 500px 0;
       }
     }
   }
