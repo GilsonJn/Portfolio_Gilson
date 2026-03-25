@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../../public/style/projects.scss';
 import { projetosLista } from '../../public/data/projetosData';
+import { useLanguage } from '../context/LanguageContext';
 
 const Projects = () => {
+    const { language, t } = useLanguage(); 
     const carrosselRef = useRef(null);
     const [filtroAtual, setFiltroAtual] = useState('Todos');
     const [projetoSelecionado, setProjetoSelecionado] = useState(null);
 
-    // Estados para o controlo do arrasto manual (Mouse Drag)
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
@@ -23,17 +24,17 @@ const Projects = () => {
 
     const categorias = ['Todos', 'Frontend', 'Backend', 'IoT & Dados'];
 
-    // Filtra os projetos consoante a categoria
-    const projetosFiltrados = filtroAtual === 'Todos' ? projetosLista : projetosLista.filter(projeto => projeto.categoria === filtroAtual);
+    const projetosDoIdioma = projetosLista[language] || projetosLista.pt;
 
-    // Se estiver em "Todos", duplicamos a lista para o loop infinito funcionar perfeitamente
+    const projetosFiltrados = filtroAtual === 'Todos' 
+        ? projetosDoIdioma 
+        : projetosDoIdioma.filter(projeto => projeto.categoria === filtroAtual);
+
     const displayProjetos = (filtroAtual === 'Todos' && !isMobile) ? [...projetosFiltrados, ...projetosFiltrados] : projetosFiltrados;
 
-    /* --- MOTOR DE AUTO-SCROLL (Apenas Desktop) --- */
     useEffect(() => {
         let animationFrameId;
         const scrollStep = () => {
-            // Adicionado !isMobile para garantir que não roda no telemóvel
             if (carrosselRef.current && filtroAtual === 'Todos' && !isHovered && !isDragging && !isMouseDown && !isMobile) {
                 carrosselRef.current.scrollLeft += 0.5;
                 if (carrosselRef.current.scrollLeft >= carrosselRef.current.scrollWidth / 2) {
@@ -46,7 +47,6 @@ const Projects = () => {
         return () => cancelAnimationFrame(animationFrameId);
     }, [filtroAtual, isHovered, isDragging, isMouseDown, isMobile]);
 
-    /* --- EVENTOS DE RATO (Apenas ativados se não for mobile) --- */
     const handleMouseDown = (e) => {
         if (isMobile) return;
         setIsMouseDown(true);
@@ -81,18 +81,13 @@ const Projects = () => {
 
     const getYouTubeEmbedUrl = (url) => {
         if (!url) return null;
-        // Se já for um link de embed, retorna ele mesmo
         if (url.includes('/embed/')) return url;
-        
-        // Expressão regular para encontrar o ID do vídeo (funciona com youtu.be, watch?v=, etc)
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
-        
-        // Se encontrou o ID (que tem sempre 11 caracteres), monta o link certinho
         if (match && match[2].length === 11) {
             return `https://www.youtube.com/embed/${match[2]}`;
         }
-        return url; // Retorna o original se falhar
+        return url; 
     };
 
     return (
@@ -100,7 +95,7 @@ const Projects = () => {
             <div className="projetos-content">
                 <div className="projetos-header">
                     <div className="projetos-title">
-                        <h2>MEUS <span>PROJETOS</span></h2>
+                        <h2>{t('projects.title1')} <span>{t('projects.title2')}</span></h2>
                     </div>
                 </div>
 
@@ -114,7 +109,7 @@ const Projects = () => {
                         onMouseMove={handleMouseMove}
                         onMouseEnter={() => setIsHovered(true)}
                     >
-                       {displayProjetos.map((projeto, index) => (
+                        {displayProjetos.map((projeto, index) => (
                             <div className="projeto-card" key={`${projeto.titulo}-${index}`}>
                                 
                                 <div className="borda-animada"></div>
@@ -123,7 +118,7 @@ const Projects = () => {
                                     <div className="projeto-imagem">
                                         <div className="img-placeholder">
                                             <div className="scanline"></div>
-                                            <span className="texto-piscar">SEM SINAL ): </span>
+                                            <span className="texto-piscar">{t('projects.noSignal')} </span>
                                         </div>
                                         {projeto.imagemCard && (
                                             <img src={projeto.imagemCard} alt={projeto.titulo} className="img-card-real" />
@@ -147,12 +142,12 @@ const Projects = () => {
                                                 className="btn-primary" 
                                                 style={{width: '100%'}}
                                             >
-                                                Saiba mais
+                                                {t('projects.learnMore')}
                                             </button>
                                         </div>
                                     </div>
 
-                                </div> {/* FECHAMOS A TAMPA AQUI */}
+                                </div>
 
                             </div>
                         ))}
@@ -169,7 +164,7 @@ const Projects = () => {
                                 if (carrosselRef.current) carrosselRef.current.scrollLeft = 0;
                             }}
                         >
-                            {categoria}
+                            {categoria === 'Todos' ? t('projects.filterAll') : categoria}
                         </button>
                     ))}
                 </div>
@@ -182,11 +177,10 @@ const Projects = () => {
                         
                         <div className="hud-header">
                             <span className="hud-status">
-                                {isMobile ? ' ● CONEXÃO ESTABELECIDA' : `● CONEXÃO ESTABELECIDA // ID_PROJETO: ${Math.floor(Math.random() * 9000) + 1000}`}
-                    
+                                {isMobile ? ` ${t('projects.statusMobile')}` : `${t('projects.statusDesktop')} ${Math.floor(Math.random() * 9000) + 1000}`}
                             </span>
                             <button className="btn-fechar" onClick={fecharPainel}>
-                                {isMobile ? '[ X ]' : '[ ENCERRAR ]'}
+                                {isMobile ? '[ X ]' : t('projects.closeBtn')}
                             </button>
                         </div>
 
@@ -196,7 +190,6 @@ const Projects = () => {
                                 <span className="hud-categoria-tag">{projetoSelecionado.categoria}</span>
                             </div>
                             
-                            {/* RENDERIZAÇÃO DINÂMICA DO VÍDEO (YOUTUBE) OU IMAGEM NO MODAL */}
                             <div className="hud-display-midia">
                                 <div className="scanline"></div>
                                 {projetoSelecionado.videoModal ? (
@@ -211,31 +204,35 @@ const Projects = () => {
                                 ) : projetoSelecionado.imagemCard ? (
                                     <img src={projetoSelecionado.imagemCard} alt={projetoSelecionado.titulo} className="midia-hud" />
                                 ) : (
-                                    <p className="sinal-alerta">SEM SINAL DE VÍDEO // AGUARDANDO UPLOAD</p>
+                                    <p className="sinal-alerta">{t('projects.noVideo')}</p>
                                 )}
                             </div>
 
                             <div className="hud-specs">
                                 <div className="spec-item">
-                                    <span className="spec-label">/// CICLO</span>
+                                    <span className="spec-label">{t('projects.cycle')}</span>
                                     <span className="spec-value">{projetoSelecionado.ano}</span>
                                 </div>
                                 <div className="spec-item">
-                                    <span className="spec-label">/// STATUS_ATUAL</span>
+                                    <span className="spec-label">{t('projects.currentStatus')}</span>
                                     <span className="spec-value">{projetoSelecionado.status}</span>
                                 </div>
                             </div>
 
                             <div className="hud-dados">
-                                <p className="texto-tecnico"> REGISTRO_DE_DADOS: {projetoSelecionado.detalhesCompletos}</p>
+                                <p className="texto-tecnico"> {t('projects.dataLog')} {projetoSelecionado.detalhesCompletos}</p>
                                 
                                 <div className="hud-acoes">
-                                    <a href={projetoSelecionado.linkGithub} target="_blank" rel="noreferrer" className="btn-hud-secundario">
-                                        [ REPOSITÓRIO_GIT ]
-                                    </a>
-                                    <a href={projetoSelecionado.linkDeploy} target="_blank" rel="noreferrer" className="btn-acessar-sistema">
-                                        INICIAR SISTEMA ❯
-                                    </a>
+                                    {projetoSelecionado.linkGithub !== "#" && (
+                                        <a href={projetoSelecionado.linkGithub} target="_blank" rel="noreferrer" className="btn-hud-secundario">
+                                            {t('projects.repoBtn')}
+                                        </a>
+                                    )}
+                                    {projetoSelecionado.linkDeploy !== "#" && (
+                                        <a href={projetoSelecionado.linkDeploy} target="_blank" rel="noreferrer" className="btn-acessar-sistema">
+                                            {t('projects.viewBtn')}
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>

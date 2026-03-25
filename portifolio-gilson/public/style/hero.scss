@@ -48,6 +48,7 @@
       margin: 20px 0;
     }
 
+    /* Container que faz a borda animada (O Gradiente que gira) */
     .button {
       margin: 0 auto;
       box-shadow: 0 0 30px rgba(176, 38, 255, 0.4);
@@ -55,38 +56,42 @@
       background-size: 200% 200%;
       animation: girarGradiente 4s linear infinite;
       border-radius: 30px;
-      padding: 1px;
-      width: 133px;
-    }
+      padding: 2px; 
+      width: fit-content;
 
-    .btn-cv {
-      background: rgba(7, 8, 11, 0.881);
-      color: var(--neon-purple);
-      padding: 0.7rem 0.8rem;
-      border-radius: 30px;
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      .btn-cv {
+        display: block; /* CRUCIAL: Como é uma tag <a>, precisa ser bloco para aceitar padding e largura corretamente */
+        text-decoration: none; /* Remove o sublinhado padrão dos links */
+        text-align: center; /* Centraliza o texto */
+        background: rgba(7, 8, 11, 0.95); /* Deixei um pouco mais escuro para o texto brilhar mais */
+        padding: 0.7rem 1rem; /* Padding lateral maior para dar aquele formato de "pílula" elegante */
+        border-radius: 30px;
+        font-family: var(--font-mono, monospace);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
 
-      span {
-        background: var(--gradiente1); 
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-       &:hover {
-        background-color: transparent;
-        color: var(--text-light);
-        box-shadow: 0 0 15px var(--neon-purple); // Brilho ao passar o mouse
-      
+        /* O texto com degradê */
         span {
-          background: var(--text-light);
+          background: var(--gradiente1); 
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+          font-weight: 600; /* Deixa a fonte um pouco mais encorpada */
+          transition: all 0.3s ease;
+        }
+
+        /* EFEITO HOVER */
+        &:hover {
+          background-color: transparent; /* Fica transparente e revela todo o gradiente que está a girar no fundo! */
+          box-shadow: 0 0 20px var(--neon-purple); /* Aumentei um pouco o brilho externo */
+        
+          span {
+            background: var(--text-light, #fff); /* O texto fica totalmente branco brilhante */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
         }
       }
-
     }
   }
 

@@ -1,15 +1,18 @@
 import React from 'react';
 import '../../public/style/skills.scss';
+import { useLanguage } from '../context/LanguageContext'; // IMPORTAR O CONTEXTO
 
 const Skills = () => {
+    const { t } = useLanguage(); // EXTRAIR A FUNÇÃO DE TRADUÇÃO
+
     return (
         <section id="habilidades" className="skills-section">
             <div className="skills-content">
                 <div className="skills-header">
-                    {/* Novo título com efeito de varredura de luz */}
-                    <h2 className="space-title">HABILIDADES</h2>
+                    {/* TRADUZIDO: Título e Subtítulo */}
+                    <h2 className="space-title">{t('skills.title')}</h2>
                     <div className="cyber-subtitle-wrapper">
-                        <p className="cyber-subtitle">&gt; MAPEAMENTO_DE_SISTEMA_CONCLUÍDO // 100%</p>
+                        <p className="cyber-subtitle">{t('skills.subtitle')}</p>
                     </div>
                 </div>
 
@@ -19,7 +22,8 @@ const Skills = () => {
                     <div className="skill-wrapper">
                         <div className="skill-card">
                             <div className="card-inner">
-                                <h3 className="skill-title">Linguagens de Programação</h3>
+                                {/* TRADUZIDO */}
+                                <h3 className="skill-title">{t('skills.card1')}</h3>
                                 <div className="skill-icons">
                                     <div className="skill-item">
                                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" />
@@ -50,7 +54,8 @@ const Skills = () => {
                     <div className="skill-wrapper">
                         <div className="skill-card">
                             <div className="card-inner">
-                                <h3 className="skill-title">Desenvolvimento Web & Mobile</h3>
+                                {/* TRADUZIDO */}
+                                <h3 className="skill-title">{t('skills.card2')}</h3>
                                 <div className="skill-icons">
                                     <div className="skill-item">
                                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" />
@@ -81,7 +86,8 @@ const Skills = () => {
                     <div className="skill-wrapper">
                         <div className="skill-card">
                             <div className="card-inner">
-                                <h3 className="skill-title">Frameworks & Ferramentas</h3>
+                                {/* TRADUZIDO */}
+                                <h3 className="skill-title">{t('skills.card3')}</h3>
                                 <div className="skill-icons">
                                     <div className="skill-item">
                                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" alt="Spring Boot" />
@@ -108,9 +114,9 @@ const Skills = () => {
                     <div className="skill-wrapper">
                         <div className="skill-card">
                             <div className="card-inner">
-                                <h3 className="skill-title">Outras</h3>
+                                {/* TRADUZIDO */}
+                                <h3 className="skill-title">{t('skills.card4')}</h3>
                                 <div className="skill-icons text-icons">
-                                    
                                     <span>Scrum</span>
                                     <span>Kanban</span>
                                     <span>Power BI</span>
@@ -123,14 +129,16 @@ const Skills = () => {
                     <div className="skill-wrapper full-width">
                         <div className="skill-card">
                             <div className="card-inner">
-                                <h3 className="skill-title">Habilidades Sociais</h3>
+                                {/* TRADUZIDO */}
+                                <h3 className="skill-title">{t('skills.card5')}</h3>
                                 <div className="social-skills-grid">
-                                    <span>Colaboratividade</span>
-                                    <span>Resiliência</span>
-                                    <span>Proatividade</span>
-                                    <span>Comunicativo</span>
-                                    <span>Pensamento Crítico</span>
-                                    <span>Responsabilidade</span>
+                                    {/* TRADUZIDO: Soft Skills */}
+                                    <span>{t('skills.soft.s1')}</span>
+                                    <span>{t('skills.soft.s2')}</span>
+                                    <span>{t('skills.soft.s3')}</span>
+                                    <span>{t('skills.soft.s4')}</span>
+                                    <span>{t('skills.soft.s5')}</span>
+                                    <span>{t('skills.soft.s6')}</span>
                                 </div>
                             </div>
                         </div>

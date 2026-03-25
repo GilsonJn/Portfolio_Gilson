@@ -8,10 +8,13 @@ import Skills from './Componentes/Skills'
 import Projects from './Componentes/Projects'
 import Contact from './Componentes/Contact'
 import Footer from './Componentes/Footer'
+import { LanguageProvider } from './context/LanguageContext'
+import CustomCursor from './Componentes/CustomCursor'
 
 function App() {
   return (
-      <div className="app-container">
+      <LanguageProvider>
+        <CustomCursor />
         <StarryBackground />
         <Navbar />
         <Hero />
@@ -20,7 +23,7 @@ function App() {
         <Skills />
         <Contact />
         <Footer />
-      </div>
+      </LanguageProvider>
   )
 }
 

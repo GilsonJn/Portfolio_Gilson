@@ -1,72 +1,158 @@
-// ficheiro: projetosData.js
+// ficheiro: src/data/projetosData.js
 
-export const projetosLista = [
-    {
-        titulo: "E-commerce Rede Ancora",
-        descricao: "Plataforma completa de comércio eletrônico para o setor de autopeças. O projeto conquistou o 3º lugar na feira tecnológica NEXT.",
-        tecnologias: ["React", "Node.js", "APIs"],
-        categoria: "Frontend",
-        linkGithub: "https://github.com/seu-usuario",
-        linkDeploy: "#",
-        detalhesCompletos: "Desenvolvido em parceria com a Rede Âncora, este projeto visa revolucionar a compra de autopeças. Inclui painel de administração, carrinho de compras dinâmico e integração com meios de pagamento.",
-        ano: "2025",
-        status: "CONCLUÍDO // PREMIADO",
-        parceiro: "Rede Ancora",
-        imagemCard: "../img/projetos/ancora.png", // Imagem que aparece no carrossel
-        videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" // Vídeo que roda no painel futurista (HUD)
-    },{
-        titulo: "Sijia - Plataforma Educativa",
-        descricao: "Sijia é uma plataforma educativa e interativa para pacientes pediátricos do Instituto da Criança e Adolescente.",
-        tecnologias: ["React", "Node.js", "JavaScript"],
-        categoria: "Frontend",
-        linkGithub: "https://github.com/Gustavo-b017/challenger-SijiA",
-        linkDeploy: "https://sijia-two.vercel.app/",
-        detalhesCompletos: "Sijia é uma plataforma educativa e interativa para pacientes pediátricos do Instituto da Criança e Adolescente, que utiliza vídeos curtos e jogos (quiz, memória) para explicar procedimentos médicos. O objetivo é informar, entreter e testar o conhecimento de crianças e acompanhantes sobre os exames, melhorando sua experiência hospitalar.",
-        ano: "2024",
-        status: "CONCLUÍDO",
-        parceiro: "Hospital HC",
-        imagemCard: "../img/projetos/sijia.png", // Imagem que aparece no carrossel
-        videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" // Vídeo que roda no painel futurista (HUD)
-    },
-    {
-        titulo: "MAP - Detector de Fadiga",
-        descricao: "Protótipo IoT que utiliza visão computacional para monitorar sinais de fadiga.",
-        tecnologias: ["Python", "OpenCV", "IoT"],
-        categoria: "IoT & Dados",
-        linkGithub: "https://github.com/seu-usuario",
-        linkDeploy: "#",
-        detalhesCompletos: "Utilizando bibliotecas de visão computacional, o sistema mapeia pontos faciais do motorista em tempo real. Caso detecte sonolência prolongada, emite alertas sonoros e visuais.",
-        ano: "2026",
-        status: "PROTÓTIPO // ATIVO",
-        parceiro: "Individual",
-        imagemCard: "/img/map-fadiga.jpg",
-        videoModal: "" // Se deixar vazio, ele exibe a imagem ou o texto de alerta
-    },
-    {
-        titulo: "Sistema de Autoescola",
-        descricao: "Aplicação web desenvolvida para otimizar o controle de aulas e processos de uma autoescola.",
-        tecnologias: ["Java", "Spring Boot", "REST"],
-        categoria: "Backend",
-        linkGithub: "https://github.com/seu-usuario",
-        linkDeploy: "#",
-        detalhesCompletos: "O sistema gerencia todo o ciclo de vida do aluno na autoescola, desde a matrícula até a emissão da CNH, controlando presença e agendamento de aulas práticas.",
-        ano: "2025",
-        status: "PRODUÇÃO // ESTÁVEL",
-        parceiro: "Individual",
-        imagemCard: "/img/autoescola.jpg",
-        videoModal: ""
-    },{
-        titulo: "Langepage - Portifolio G3",
-        descricao: "",
-        tecnologias: ["React", "Scss", "JavaScript"],
-        categoria: "Frontend",
-        linkGithub: "https://github.com/Gustavo-b017/Portifolio_G3",
-        linkDeploy: "https://portifolio-g3.vercel.app/",
-        detalhesCompletos: "Sijia é uma plataforma educativa e interativa para pacientes pediátricos do Instituto da Criança e Adolescente, que utiliza vídeos curtos e jogos (quiz, memória) para explicar procedimentos médicos. O objetivo é informar, entreter e testar o conhecimento de crianças e acompanhantes sobre os exames, melhorando sua experiência hospitalar.",
-        ano: "2025",
-        status: "CONCLUÍDO",
-        parceiro: "Grupo G3",
-        imagemCard: "../img/projetos/sijia.png", // Imagem que aparece no carrossel
-        videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" // Vídeo que roda no painel futurista (HUD)
-    }
-];
+export const projetosLista = {
+    pt: [
+        {
+            id: 1,
+            titulo: "E-commerce Rede Ancora (Peça Certa)",
+            descricao: "Plataforma completa de comércio eletrônico para o setor de autopeças. O projeto conquistou o 3º lugar na feira tecnológica NEXT.",
+            tecnologias: ["React", "Node.js", "APIs"],
+            categoria: "Frontend",
+            linkGithub: "https://github.com/seu-usuario",
+            linkDeploy: "#",
+            detalhesCompletos: "Desenvolvido em parceria com a Rede Âncora, este projeto visa revolucionar a compra de autopeças. Inclui painel de administração, carrinho de compras dinâmico e integração com meios de pagamento.",
+            ano: "2025",
+            status: "CONCLUÍDO // PREMIADO",
+            parceiro: "Rede Ancora",
+            imagemCard: "../img/projetos/ancora.png", 
+            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" 
+        },
+        {
+            id: 2,
+            titulo: "Sijia - Plataforma Educativa",
+            descricao: "Sijia é uma plataforma educativa e interativa para pacientes pediátricos do Instituto da Criança e Adolescente.",
+            tecnologias: ["React", "Node.js", "JavaScript"],
+            categoria: "Frontend",
+            linkGithub: "https://github.com/Gustavo-b017/challenger-SijiA",
+            linkDeploy: "https://sijia-two.vercel.app/",
+            detalhesCompletos: "Sijia é uma plataforma educativa e interativa para pacientes pediátricos do Instituto da Criança e Adolescente, que utiliza vídeos curtos e jogos (quiz, memória) para explicar procedimentos médicos. O objetivo é informar, entreter e testar o conhecimento de crianças e acompanhantes sobre os exames, melhorando sua experiência hospitalar.",
+            ano: "2024",
+            status: "CONCLUÍDO",
+            parceiro: "Hospital HC",
+            imagemCard: "../img/projetos/sijia.png", 
+            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" 
+        },
+        {
+            id: 3,
+            titulo: "MAP - Detector de Fadiga",
+            descricao: "Protótipo IoT que utiliza visão computacional para monitorar sinais de fadiga.",
+            tecnologias: ["Python", "OpenCV", "IoT"],
+            categoria: "IoT & Dados",
+            linkGithub: "https://github.com/seu-usuario",
+            linkDeploy: "#",
+            detalhesCompletos: "Utilizando bibliotecas de visão computacional, o sistema mapeia pontos faciais do motorista em tempo real. Caso detecte sonolência prolongada, emite alertas sonoros e visuais.",
+            ano: "2026",
+            status: "PROTÓTIPO // ATIVO",
+            parceiro: "Individual",
+            imagemCard: "/img/map-fadiga.jpg",
+            videoModal: "" 
+        },
+        {
+            id: 4,
+            titulo: "Sistema de Autoescola",
+            descricao: "Aplicação web desenvolvida para otimizar o controle de aulas e processos de uma autoescola.",
+            tecnologias: ["Java", "Spring Boot", "REST"],
+            categoria: "Backend",
+            linkGithub: "https://github.com/seu-usuario",
+            linkDeploy: "#",
+            detalhesCompletos: "O sistema gerencia todo o ciclo de vida do aluno na autoescola, desde a matrícula até a emissão da CNH, controlando presença e agendamento de aulas práticas.",
+            ano: "2025",
+            status: "PRODUÇÃO // ESTÁVEL",
+            parceiro: "Individual",
+            imagemCard: "/img/autoescola.jpg",
+            videoModal: ""
+        },
+        {
+            id: 5,
+            titulo: "Landing Page - Portfólio G3",
+            descricao: "Portfólio online desenvolvido para apresentar os projetos e habilidades da equipe G3 de forma dinâmica e moderna.",
+            tecnologias: ["React", "SCSS", "JavaScript"],
+            categoria: "Frontend",
+            linkGithub: "https://github.com/Gustavo-b017/Portifolio_G3",
+            linkDeploy: "https://portifolio-g3.vercel.app/",
+            detalhesCompletos: "Página web responsiva criada para consolidar e expor os trabalhos da equipe G3 (formada por Gilson, Gustavo, Jeferson e Larissa). O projeto destaca a nossa trajetória académica, as tecnologias que dominamos e as premiações conquistadas ao longo do curso.",
+            ano: "2025",
+            status: "CONCLUÍDO",
+            parceiro: "Grupo G3",
+            imagemCard: "../img/projetos/sijia.png", // Lembre-se de atualizar esta imagem para uma específica do portfólio
+            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" 
+        }
+    ],
+    en: [
+        {
+            id: 1,
+            titulo: "Rede Ancora E-commerce",
+            descricao: "Complete e-commerce platform for the auto parts sector. The project won 3rd place at the NEXT technology fair.",
+            tecnologias: ["React", "Node.js", "APIs"],
+            categoria: "Frontend",
+            linkGithub: "https://github.com/seu-usuario",
+            linkDeploy: "#",
+            detalhesCompletos: "Developed in partnership with Rede Âncora, this project aims to revolutionize auto parts purchasing. It includes an administration panel, a dynamic shopping cart, and payment gateway integration.",
+            ano: "2025",
+            status: "COMPLETED // AWARDED",
+            parceiro: "Rede Ancora",
+            imagemCard: "../img/projetos/ancora.png",
+            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_"
+        },
+        {
+            id: 2,
+            titulo: "Sijia - Educational Platform",
+            descricao: "Sijia is an interactive educational platform for pediatric patients at the Child and Adolescent Institute.",
+            tecnologias: ["React", "Node.js", "JavaScript"],
+            categoria: "Frontend",
+            linkGithub: "https://github.com/Gustavo-b017/challenger-SijiA",
+            linkDeploy: "https://sijia-two.vercel.app/",
+            detalhesCompletos: "Sijia is an educational and interactive platform for pediatric patients at the Child and Adolescent Institute, using short videos and games (quizzes, memory games) to explain medical procedures. The goal is to inform, entertain, and test the knowledge of children and companions about exams, improving their hospital experience.",
+            ano: "2024",
+            status: "COMPLETED",
+            parceiro: "Hospital HC",
+            imagemCard: "../img/projetos/sijia.png",
+            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_"
+        },
+        {
+            id: 3,
+            titulo: "MAP - Fatigue Detector",
+            descricao: "IoT prototype that uses computer vision to monitor signs of driver fatigue.",
+            tecnologias: ["Python", "OpenCV", "IoT"],
+            categoria: "IoT & Data",
+            linkGithub: "https://github.com/seu-usuario",
+            linkDeploy: "#",
+            detalhesCompletos: "Using computer vision libraries, the system maps the driver's facial points in real-time. If it detects prolonged drowsiness, it issues both sound and visual alerts.",
+            ano: "2026",
+            status: "PROTOTYPE // ACTIVE",
+            parceiro: "Individual",
+            imagemCard: "/img/map-fadiga.jpg",
+            videoModal: ""
+        },
+        {
+            id: 4,
+            titulo: "Driving School System",
+            descricao: "Web application developed to optimize class scheduling and processes for a driving school.",
+            tecnologias: ["Java", "Spring Boot", "REST"],
+            categoria: "Backend",
+            linkGithub: "https://github.com/seu-usuario",
+            linkDeploy: "#",
+            detalhesCompletos: "The system manages the entire lifecycle of a student at the driving school, from enrollment to the issuance of the driver's license, controlling attendance and practical class scheduling.",
+            ano: "2025",
+            status: "PRODUCTION // STABLE",
+            parceiro: "Individual",
+            imagemCard: "/img/autoescola.jpg",
+            videoModal: ""
+        },
+        {
+            id: 5,
+            titulo: "Landing Page - G3 Portfolio",
+            descricao: "Online portfolio developed to dynamically and modernly showcase the projects and skills of Team G3.",
+            tecnologias: ["React", "SCSS", "JavaScript"],
+            categoria: "Frontend",
+            linkGithub: "https://github.com/Gustavo-b017/Portifolio_G3",
+            linkDeploy: "https://portifolio-g3.vercel.app/",
+            detalhesCompletos: "A responsive web page created to consolidate and exhibit the work of Team G3 (formed by Gilson, Gustavo, Jeferson, and Larissa). The project highlights our academic journey, the technologies we master, and the awards won throughout the course.",
+            ano: "2025",
+            status: "COMPLETED",
+            parceiro: "Team G3",
+            imagemCard: "../img/projetos/sijia.png", 
+            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_"
+        }
+    ]
+};

@@ -1,0 +1,68 @@
+/* Esconde o cursor padrão APENAS SE o utilizador usar um rato de verdade */
+@media (pointer: fine) {
+    body {
+        cursor: none;
+    }
+    
+    a, button, .clickable, .nav-lang-minimal, .btn-filtro, .projeto-card {
+        cursor: none !important;
+    }
+}
+
+/* O Ponto Central (Núcleo) */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--neon-blue, #2d5bff);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100000;
+    pointer-events: none; /* Deixa o clique passar através dele */
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    
+    /* Move instantaneamente, só anima a opacidade */
+    transition: opacity 0.2s;
+
+    &.hover {
+        opacity: 0;
+    }
+}
+
+/* A Aura de Energia (Rastro) */
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    border: 2px solid rgba(176, 38, 255, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.3), inset 0 0 10px rgba(176, 38, 255, 0.2);
+    
+    /* A MÁGICA ESTÁ AQUI: O atraso de 0.1s no left/top cria o rastro! */
+    transition: left 0.1s ease-out, top 0.1s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+
+    &.hover {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(45, 91, 255, 0.1);
+        border-color: var(--neon-blue, #2d5bff);
+        box-shadow: 0 0 20px rgba(45, 91, 255, 0.4);
+    }
+}
+
+/* Se for mobile/tablet (touch), não mostra a aura nem o ponto */
+@media (max-width: 768px), (pointer: coarse) {
+    .cursor-dot, .cursor-outline {
+        display: none !important;
+    }
+    body, a, button {
+        cursor: auto !important;
+    }
+}

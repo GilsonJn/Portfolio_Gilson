@@ -1,14 +1,18 @@
 import React from 'react';
 import '../../public/style/contact.scss';
 import StarryBackground from './StarryBackground';
+import { useLanguage } from '../context/LanguageContext'; // IMPORTAR O CONTEXTO
 
 const Contact = () => {
+    const { t } = useLanguage(); // EXTRAIR A FUNÇÃO DE TRADUÇÃO
+
     return (
         <section id="contato" className="contact-section">
             <StarryBackground />
     
             <div className="contact-content">
-                <h2 className="contact-title">CONTATO</h2>
+                {/* TÍTULO TRADUZIDO */}
+                <h2 className="contact-title">{t('contact.title')}</h2>
                 
                 <div className="social-links">
                     {/* LINKEDIN */}
@@ -25,9 +29,9 @@ const Contact = () => {
                         </svg>
                     </a>
 
-                    {/* EMAIL */}
+                    {/* EMAIL - Com o link ajustado dinamicamente */}
                     <a 
-                        href="https://mail.google.com/mail/?view=cm&fs=1&to=gilsondiasjn@gmail.com" 
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${t('contact.emailLink')}`} 
                         target="_blank" 
                         rel="noreferrer" 
                         className="social-icon" 

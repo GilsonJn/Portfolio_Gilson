@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import '../../public/style/about.scss'; 
 import fotoPerfil from '../../public/img/foto2.png';
+import { useLanguage } from '../context/LanguageContext'; // IMPORTAR O HOOK
 
 const About = () => {
+    const { t } = useLanguage(); // EXTRAIR A FUNÇÃO DE TRADUÇÃO
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [imagemAtual, setImagemAtual] = useState(0); // Estado para o carrossel
+    const [imagemAtual, setImagemAtual] = useState(0);
 
     const abrirModal = () => setIsModalOpen(true);
     const fecharModal = () => {
         setIsModalOpen(false);
-        setImagemAtual(0); // Reseta o carrossel ao fechar
+        setImagemAtual(0);
     };
 
-    // Array com as imagens e placeholders do carrossel
     const imagensCarrossel = [
+        { tipo: 'img', src: '/img/top3/1.jpg' },
+        { tipo: 'img', src: '/img/top3/2.jpg' },
         { tipo: 'img', src: '/img/projetos/ancora.png', alt: 'Apresentação Rede Âncora' },
-        { tipo: 'placeholder', text: 'FOTO_EQUIPE_G3.JPG' },
-        { tipo: 'img', src: '/img/projetos/tekoa.png', alt: 'Projeto G3' } // Imagem extra de exemplo
+        { tipo: 'placeholder', text: 'FOTO_EQUIPE_G3.JPG' }
     ];
 
-    // Funções de navegação do carrossel
     const proximaImagem = () => {
         setImagemAtual((prev) => (prev === imagensCarrossel.length - 1 ? 0 : prev + 1));
     };
@@ -30,10 +31,10 @@ const About = () => {
 
     return (
         <section id="sobre" className="about-section">
-
             <div className="about-content">
                 <div className="about-title">
-                    <h2>SOBRE <span>MIM</span></h2>
+                    {/* TÍTULO TRADUZIDO */}
+                    <h2>{t('about.title1')} <span>{t('about.title2')}</span></h2>
                     <div className="about-image-wrapper">
                         <div className="rocket-icon">🚀</div>
                         <img src={fotoPerfil} alt="Foto de Gilson Dias" />
@@ -41,41 +42,41 @@ const About = () => {
                     </div>
                 </div>
                 <div className="about-text-area">
+                    {/* PARÁGRAFOS TRADUZIDOS */}
+                    <p>{t('about.p1')}</p>
                     <p>
-                        Sou estudante de Engenharia de Software, apaixonado por criar soluções tecnológicas que geram impacto real e facilitam o dia a dia das pessoas. 
-                        Tenho forte interesse no desenvolvimento de aplicações web e em explorar a integração entre hardware e software.
-                    </p>
-                    <p>
-                        Gosto de atuar em ambientes colaborativos onde posso unir <span>criatividade, lógica e liderança</span> para tirar ideias do papel e transformá-las em produtos funcionais.
+                        {t('about.p2Start')}
+                        <span>{t('about.p2Highlight')}</span>
+                        {t('about.p2End')}
                     </p>
                     
                     <div className="about-stats">
+                        {/* CARTÕES TRADUZIDOS */}
                         <div className="stat-card">
-                            <h3>Engenharia de Software</h3>
-                            <p>Graduação</p>
+                            <h3>{t('about.stats.course')}</h3>
+                            <p>{t('about.stats.degree')}</p>
                         </div>
                         <div className="stat-card">
-                            <h3>3º</h3>
-                            <p>Ano</p>
+                            <h3>{t('about.stats.yearNum')}</h3>
+                            <p>{t('about.stats.yearText')}</p>
                         </div>
                         <div className="stat-card clickable" onClick={abrirModal}>
-                            <h3>Top 3</h3>
-                            <p>FIAP - Next 2025</p>
-                            <span className="click-hint">Clique para ver mais ❯</span>
+                            <h3>{t('about.stats.awardTitle')}</h3>
+                            <p>{t('about.stats.awardSub')}</p>
+                            <span className="click-hint">{t('about.stats.clickHint')}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* MODAL DA PREMIAÇÃO */}
+            {/* MODAL TRADUZIDO */}
             {isModalOpen && (
                 <div className="about-modal-overlay" onClick={fecharModal}>
                     <div className="about-modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="close-btn" onClick={fecharModal}>[ X ]</button>
                         
-                        <h3 className="modal-title">PRÊMIO // NEXT 2025</h3>
+                        <h3 className="modal-title">{t('about.modal.title')}</h3>
                         
-                        {/* NOVO CARROSSEL DE IMAGENS */}
                         <div className="modal-carrossel">
                             <button className="btn-carrossel prev" onClick={imagemAnterior}>&#10094;</button>
 
@@ -96,7 +97,6 @@ const About = () => {
 
                             <button className="btn-carrossel next" onClick={proximaImagem}>&#10095;</button>
                             
-                            {/* PONTOS DE NAVEGAÇÃO (DOTS) */}
                             <div className="carrossel-dots">
                                 {imagensCarrossel.map((_, index) => (
                                     <span 
@@ -110,11 +110,21 @@ const About = () => {
 
                         <div className="modal-text">
                             <p>
-                                Conquista do <strong>3º lugar</strong> na feira de tecnologia "Next" da FIAP, 
-                                competindo com diversos projetos de alto nível tecnológico.
+                                {/* Misturando texto normal com negrito via código */}
+                                {t('about.modal.text1').split('3º lugar').length > 1 ? (
+                                    <>Conquista do <strong>3º lugar</strong> na feira de tecnologia "Next" da FIAP, competindo com diversos projetos de alto nível tecnológico.</>
+                                ) : (
+                                    <>Achieved <strong>3rd place</strong> at the FIAP "Next" technology fair, competing against several high-level technological projects.</>
+                                )}
                             </p>
                             <p>
-                                Este prêmio foi o reconhecimento do trabalho árduo da <strong>equipe G3</strong> (junto com Gustavo e Jeferson) no desenvolvimento do projeto <em>"Peça Certa"</em> (App do Mecânico), uma solução inovadora construída em parceria com a <strong>Rede Ancora</strong> para otimizar a distribuição de autopeças.
+                                {t('about.modal.text2Start')}
+                                <strong>{t('about.modal.teamG3')}</strong>
+                                {t('about.modal.text2Mid')}
+                                <em>{t('about.modal.projectName')}</em>
+                                {t('about.modal.text2End')}
+                                <strong>{t('about.modal.partner')}</strong>
+                                {t('about.modal.text2Final')}
                             </p>
                         </div>
                     </div>

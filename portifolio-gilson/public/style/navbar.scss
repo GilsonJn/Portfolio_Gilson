@@ -17,15 +17,21 @@
 
   /* === EFEITO DE VIDRO CORRIGIDO (ATIVADO NO SCROLL) === */
   &.scrolled {
-    background-image: none; /* Remove o degradê inicial */
-    background-color: rgba(13, 14, 21, 0.45); /* Cor bem transparente (45%) para o vidro funcionar */
-    backdrop-filter: blur(16px); /* Desfoque forte para borrar o fundo */
-    -webkit-backdrop-filter: blur(16px); /* Suporte para Safari/iPhones */
+    background-image: none;
+    /* Remove o degradê inicial */
+    background-color: rgba(13, 14, 21, 0.45);
+    /* Cor bem transparente (45%) para o vidro funcionar */
+    backdrop-filter: blur(16px);
+    /* Desfoque forte para borrar o fundo */
+    -webkit-backdrop-filter: blur(16px);
+    /* Suporte para Safari/iPhones */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória super subtil */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Linha divisória super subtil */
 
     .nav-wrap {
-      padding: 8px 16px; /* Encolhe ligeiramente a barra ao fazer scroll */
+      padding: 8px 16px;
+      /* Encolhe ligeiramente a barra ao fazer scroll */
     }
   }
 
@@ -45,15 +51,39 @@
   }
 
   /* SELETOR DE IDIOMA */
-  .nav-lang {
-    font-size: 0.9rem;
+  .nav-lang-minimal {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+    color: var(--text-muted, #a0a0b0);
+    /* Cor base mais apagada */
     cursor: pointer;
-    color: var(--text-light);
-    font-weight: 500;
-    transition: color 0.3s ease;
+    margin-right: 15px;
+    /* Afasta um pouco do menu hambúrguer no mobile */
+    transition: opacity 0.3s ease;
 
     &:hover {
-      color: var(--neon-blue);
+      opacity: 0.8;
+      /* Leve transparência ao passar o rato no conjunto todo */
+    }
+
+    span {
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+
+      /* O idioma que está selecionado fica branco e ganha um brilho super subtil */
+      &.active {
+        color: var(--text-light, #ffffff);
+        font-weight: 600;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    .separator {
+      color: rgba(255, 255, 255, 0.15);
+      /* Barra divisória quase invisível */
+      font-size: 0.8rem;
     }
   }
 
@@ -61,7 +91,8 @@
   /* --- MENU MOBILE ORIGINAL MANTIDO --- */
   /* ========================================= */
   .burger {
-    display: block; /* Visível por defeito no mobile */
+    display: block;
+    /* Visível por defeito no mobile */
     position: relative;
     width: 44px;
     height: 44px;
@@ -77,9 +108,20 @@
       background: var(--neon-purple);
       transition: transform .25s ease, top .25s ease, opacity .2s ease;
 
-      &:nth-child(1) { top: 14px; left: 2px; }
-      &:nth-child(2) { top: 21px; left: 2px; }
-      &:nth-child(3) { top: 28px; left: 2px; }
+      &:nth-child(1) {
+        top: 14px;
+        left: 2px;
+      }
+
+      &:nth-child(2) {
+        top: 21px;
+        left: 2px;
+      }
+
+      &:nth-child(3) {
+        top: 28px;
+        left: 2px;
+      }
     }
 
     &[aria-expanded="true"] span:nth-child(1) {
@@ -100,7 +142,8 @@
   }
 
   .nav-links {
-    display: none; /* Escondido por defeito */
+    display: none;
+    /* Escondido por defeito */
     position: absolute;
     top: 60px;
     right: 25px;
@@ -116,7 +159,8 @@
     margin: 0;
 
     &.is-open {
-      display: flex; /* Revela o menu quando ativo */
+      display: flex;
+      /* Revela o menu quando ativo */
     }
 
     .fundo {
@@ -154,9 +198,17 @@
 
 @media (min-width: 768px) {
   .navbar {
-    
+
     .nav-wrap {
-      padding: 35px 0; /* Margens maiores no desktop quando no topo */
+      padding: 35px 0;
+      /* Margens maiores no desktop quando no topo */
+
+      .nav-lang-minimal {
+        margin-right: 0;
+        /* Tira a margem pois o hambúrguer já não existe aqui */
+        font-size: 0.95rem;
+        /* Fica um pouco maior na tela do PC */
+      }
     }
 
     /* O vidro no desktop fica ligeiramente mais fino que o topo */
@@ -166,13 +218,15 @@
 
     /* Esconde o menu hambúrguer no Desktop */
     .burger {
-      display: none; 
+      display: none;
     }
 
     /* Formatação limpa do Desktop */
     .nav-links {
-      display: flex; /* Sempre visível */
-      position: static; /* Sai do position absolute do mobile */
+      display: flex;
+      /* Sempre visível */
+      position: static;
+      /* Sai do position absolute do mobile */
       flex-direction: row;
       background: transparent;
       box-shadow: none;
@@ -181,8 +235,10 @@
       min-width: auto;
 
       .fundo {
-        flex-direction: row; /* Itens lado a lado */
-        background-color: transparent; /* Remove a caixa escura */
+        flex-direction: row;
+        /* Itens lado a lado */
+        background-color: transparent;
+        /* Remove a caixa escura */
         padding: 0;
         gap: 24px;
       }
@@ -207,7 +263,7 @@
         }
 
         &:hover {
-          color: var(--text-light); 
+          color: var(--text-light);
           opacity: 1;
 
           /* Acende e expande a barra de baixo */
