@@ -1,0 +1,51 @@
+.footer-section {
+    width: 100%;
+    background-color: var(--bg-dark, #050508);
+    border-top: 1px solid rgba(45, 91, 255, 0.1); /* Uma linha subtil para separar do Contato */
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10; /* Fica acima do planeta se ele descer muito */
+
+    .footer-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        p {
+            margin: 0;
+            font-family: var(--font-sans, sans-serif);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5); /* Cinza claro/discreto */
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-tag {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            font-family: var(--font-mono, monospace);
+        }
+    }
+}
+
+/* No desktop, coloca as duas frases lado a lado em vez de empilhadas */
+@media (min-width: 768px) {
+    .footer-section {
+        .footer-content {
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1280px;
+            padding: 0 2rem;
+            
+            .copyright { font-size: 0.9rem; }
+            .footer-tag { font-size: 0.85rem; }
+        }
+    }
+}

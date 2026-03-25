@@ -181,8 +181,13 @@ const Projects = () => {
                     <div className="modal-hud" onClick={(e) => e.stopPropagation()}>
                         
                         <div className="hud-header">
-                            <span className="hud-status">● CONEXÃO ESTABELECIDA // ID_PROJETO: {Math.floor(Math.random() * 9000) + 1000}</span>
-                            <button className="btn-fechar" onClick={fecharPainel}>[ ENCERRAR ]</button>
+                            <span className="hud-status">
+                                {isMobile ? ' ● CONEXÃO ESTABELECIDA' : `● CONEXÃO ESTABELECIDA // ID_PROJETO: ${Math.floor(Math.random() * 9000) + 1000}`}
+                    
+                            </span>
+                            <button className="btn-fechar" onClick={fecharPainel}>
+                                {isMobile ? '[ X ]' : '[ ENCERRAR ]'}
+                            </button>
                         </div>
 
                         <div className="hud-body">
@@ -218,10 +223,6 @@ const Projects = () => {
                                 <div className="spec-item">
                                     <span className="spec-label">/// STATUS_ATUAL</span>
                                     <span className="spec-value">{projetoSelecionado.status}</span>
-                                </div>
-                                <div className="spec-item">
-                                    <span className="spec-label">/// OPERADORES</span>
-                                    <span className="spec-value">{projetoSelecionado.equipe}</span>
                                 </div>
                             </div>
 

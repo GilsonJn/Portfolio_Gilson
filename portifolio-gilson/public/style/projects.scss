@@ -7,10 +7,10 @@
     justify-content: center;
     align-items: center;
     padding: 4rem 2rem;
+    //margin-top: 150px;
     width: 100%;
-    min-height: 110vh;
+    min-height: 150vh;
     height: auto;
-    margin-top: 100px;
     background-image: url('../img/planeta.svg');
     background-size: auto 100%;
     background-position: center;
@@ -22,6 +22,7 @@
         width: 100%;
         max-width: 1280px;
         gap: 2rem;
+        margin-top: 215px;
 
         .projetos-header {
             display: flex;
@@ -35,12 +36,23 @@
                     font-size: var(--titulo-mob);
                     font-weight: 700;
                     color: var(--text-light);
-                    margin-top: -120px;
+                    //margin-top: -115px;
 
                     span {
-                        background: var(--gradiente1);
+                        /* O EFEITO DE FEIXE DE LUZ (SHINE) APENAS NA PALAVRA */
+                        background: linear-gradient(90deg,
+                                var(--neon-blue, #2d5bff) 0%,
+                                var(--text-light, #fff) 25%,
+                                var(--neon-purple, #b026ff) 50%,
+                                var(--text-light, #fff) 75%,
+                                var(--neon-blue, #2d5bff) 100%);
+                        background-size: 200% auto;
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
+                        animation: brilhoEspacial 7s linear infinite;
+
+                        /* Brilho neon suave em volta das letras */
+                        filter: drop-shadow(0 0 8px rgba(176, 38, 255, 0.4));
                     }
                 }
             }
@@ -139,7 +151,7 @@
                 .projeto-card {
                     position: relative;
                     padding: 2px;
-                    background: rgba(16, 1, 20, 0.623);
+                    background: rgba(16, 1, 20, 0.507);
                     border: 2px solid rgba(255, 255, 255, 0.08);
                     border-radius: 16px;
                     overflow: hidden;
@@ -153,7 +165,8 @@
                         position: absolute;
                         inset: 0;
                         border-radius: 16px;
-                        padding: 2px; /* Espessura da borda */
+                        padding: 2px;
+                        /* Espessura da borda */
                         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
                         -webkit-mask-composite: destination-out;
                         mask-composite: exclude;
@@ -172,18 +185,21 @@
                         mask-composite: exclude;
                         pointer-events: none;
                         z-index: 3;
-                        opacity: 0; /* Começa invisível */
+                        opacity: 0;
+                        /* Começa invisível */
                         transition: opacity 0.4s ease;
-                        overflow: hidden; /* Mantém o gradiente giratório preso nas bordas arredondadas */
+                        overflow: hidden;
+                        /* Mantém o gradiente giratório preso nas bordas arredondadas */
 
                         &::before {
                             content: '';
                             position: absolute;
-                            top: -50%; left: -50%; width: 200%; height: 200%;
-                            background: conic-gradient(
-                                transparent, transparent, transparent, 
-                                var(--neon-purple, #b026ff), var(--neon-blue, #2d5bff)
-                            );
+                            top: -50%;
+                            left: -50%;
+                            width: 200%;
+                            height: 200%;
+                            background: conic-gradient(transparent, transparent, transparent,
+                                    var(--neon-purple, #b026ff), var(--neon-blue, #2d5bff));
                             animation: spinBorder 4s linear infinite;
                         }
                     }
@@ -192,24 +208,26 @@
                     &:hover {
                         transform: translateY(-8px) scale(1.02);
                         box-shadow: 0 10px 30px rgba(176, 38, 255, 0.2);
-                        
+
                         /* ESCURECE O FUNDO QUANDO O RATO PASSA */
-                        background: var(--bg-dark, #0d0e15); 
-                        
+                        background: var(--bg-dark, #0d0e15);
+
                         /* REVELA A BORDA GIRATÓRIA */
                         .borda-animada {
-                            opacity: 1; 
+                            opacity: 1;
                         }
                     }
 
                     /* 5. A TAMPA (Agora tem fundo transparente para deixar o card respirar) */
                     .card-inner {
                         position: relative;
-                        background: transparent; /* O fundo escuro agora é controlado pelo pai no hover */
+                        background: transparent;
+                        /* O fundo escuro agora é controlado pelo pai no hover */
                         border-radius: 14px;
                         width: 100%;
                         height: 100%;
-                        z-index: 4; /* Fica acima das bordas */
+                        z-index: 4;
+                        /* Fica acima das bordas */
                         display: flex;
                         flex-direction: column;
                         overflow: hidden;
@@ -243,14 +261,12 @@
                             position: absolute;
                             top: 0;
                             left: 0;
-                            
+
                             /* Fundo ultra transparente */
-                            background: linear-gradient(
-                                135deg, 
-                                rgba(45, 90, 255, 0.176) 0%,   
-                                rgba(175, 38, 255, 0.123) 50%, 
-                                rgba(5, 5, 8, 0.331) 100%      
-                            );
+                            background: linear-gradient(135deg,
+                                    rgba(45, 90, 255, 0.176) 0%,
+                                    rgba(175, 38, 255, 0.123) 50%,
+                                    rgba(5, 5, 8, 0.331) 100%);
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -323,10 +339,14 @@
                                 border-radius: 30px;
                                 font-size: 0.8rem;
                                 font-weight: 500;
+                                background: var(--gradiente2);
+                                background-size: 200% 200%;
+                                animation: girarGradiente 5s linear infinite;
+                                opacity: 0.9;
                             }
 
                             .btn-primary {
-                                background: var(--gradiente1);
+                                background-color: transparent;
                                 color: var(--text-light);
                                 border: none;
                             }
@@ -353,7 +373,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 10050;
     padding: 1rem;
 
     .modal-hud {
@@ -418,7 +438,10 @@
                 border: none;
                 color: rgba(255, 60, 60, 0.8);
                 font-family: var(--font-mono);
-                font-size: 0.9rem;
+                font-size: 1rem;
+                /* Aumentado no mobile para o 'X' ser fácil de tocar */
+                font-weight: 900;
+                /* Mais gordinho para não desaparecer na tela */
                 cursor: pointer;
                 transition: all 0.3s;
 
@@ -427,6 +450,7 @@
                     text-shadow: 0 0 10px #ff3c3c;
                 }
             }
+
         }
 
         .hud-body {
@@ -441,7 +465,7 @@
                 gap: 0.5rem;
 
                 .hud-titulo {
-                    font-size: 2rem;
+                    font-size: calc(var(--titulo-mob) - 0.9rem);
                     color: var(--text-light);
                     margin: 0;
                     text-transform: uppercase;
@@ -542,7 +566,7 @@
                 .texto-tecnico {
                     color: var(--text-muted);
                     line-height: 1.8;
-                    font-size: 0.95rem;
+                    font-size: var(--texto-mob);
                     font-family: var(--font-mono);
                     border-left: 2px solid var(--neon-purple);
                     padding-left: 1rem;
@@ -646,6 +670,13 @@
     }
 }
 
+/* Animação do Feixe de Luz varrendo o título */
+@keyframes brilhoEspacial {
+    to {
+        background-position: 200% center;
+    }
+}
+
 /* ========================================= */
 /* --- 4. MEDIA QUERIES (DESKTOP E TABLET) ---*/
 /* ========================================= */
@@ -658,8 +689,16 @@
         margin-top: 300px;
 
         .projetos-content {
+            
+            margin-top: 0;
+            
             .projetos-header {
-                display: none;
+                .projetos-title h2 {
+                    font-size: var(--titulo);
+                    font-weight: 700;
+                    color: var(--text-light);
+                    margin-bottom: -2rem;
+                }
             }
 
             .projetos-filtros {
@@ -706,6 +745,7 @@
 
                             .projeto-links button {
                                 font-size: 0.9rem;
+                                opacity: 0.5;
                             }
                         }
 
@@ -725,6 +765,10 @@
                                 visibility: visible;
                                 transform: scale(1.05);
                             }
+
+                            .projeto-info .projeto-links .btn-primary {
+                                opacity: 1;
+                            }
                         }
                     }
                 }
@@ -735,11 +779,19 @@
     /* --- Ajustes do Modal HUD --- */
     .modal-overlay {
         .modal-hud {
+            .hud-header {
+                .btn-fechar {
+                    font-size: 0.9rem;
+                    font-weight: normal;
+                }
+            }
+
             .hud-body {
                 .hud-titulo-wrapper {
                     flex-direction: row;
                     align-items: center;
                     justify-content: space-between;
+
                 }
 
                 .hud-display-midia {
@@ -750,9 +802,16 @@
                     grid-template-columns: repeat(3, 1fr);
                 }
 
-                .hud-dados .hud-acoes {
-                    flex-direction: row;
-                    justify-content: flex-end;
+                .hud-dados {
+
+                    .texto-tecnico {
+                        font-size: calc(var(--texto) - 0.2rem);
+                    }
+
+                    .hud-acoes {
+                        flex-direction: row;
+                        justify-content: flex-end;
+                    }
                 }
             }
         }

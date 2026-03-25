@@ -3,42 +3,68 @@
 /* ========================================= */
 
 .skills-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10rem 1.5rem;
-  /* Menos padding lateral no mobile */
-  width: 100%;
-  min-height: 80vh;
-
-  /* ========================================= */
-  /* FUNDO: INTERFACE TÁTICA DE NAVE (HUD)     */
-  /* ========================================= */
-  //background-color: var(--bg-dark, #050508);
-  /* Fundo base infinito e escuro */
-  background-image:
-    /* 1. Brilho central do reator/ecrã (Azul Neon suave) */
-    radial-gradient(circle at 50% 50%, rgba(45, 91, 255, 0.08) 0%, transparent 60%),
-
-    /* 2. Malha Tática Horizontal (Roxo Neon muito transparente) */
-    linear-gradient(rgba(176, 38, 255, 0.04) 1px, transparent 1px),
-
-    /* 3. Malha Tática Vertical (Roxo Neon muito transparente) */
-    linear-gradient(90deg, rgba(176, 38, 255, 0.04) 1px, transparent 1px);
-
-  /* Define o tamanho dos quadrados da grelha (40x40px) */
-  background-size: 100% 100%, 40px 40px, 40px 40px;
-  background-position: center center;
-
-  /* Adiciona uma "sombra" interna para escurecer as bordas da tela */
-  //box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
-
-  .skills-content {
+ position: relative;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1.5rem;
     width: 100%;
-    max-width: 1000px;
-    gap: 2.5rem;
+    min-height: 80vh;
+    overflow: hidden; /* Mantém a magia dentro da secção */
+    background-color: transparent; /* Deixa o StarryBackground brilhar no fundo */
+
+    /* ========================================= */
+    /* MÁGICA 1: GRADE ANIMADA QUE ESFUMAÇA      */
+    /* ========================================= */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0; 
+        pointer-events: none;
+
+        /* Desenha a malha tática (Tamanho 40x40px) */
+        background-image: 
+            linear-gradient(rgba(176, 38, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(176, 38, 255, 0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+
+        /* MÁSCARA RADIAL: 100% visível no centro, 0% nas bordas */
+        -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 80%);
+        mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 80%);
+
+        /* Faz a grade "andar" continuamente */
+        animation: mapeamentoTatico 10s linear infinite;
+    }
+
+    /* ========================================= */
+    /* MÁGICA 2: BRILHO CENTRAL DO REATOR        */
+    /* ========================================= */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(circle, rgba(45, 91, 255, 0.05) 0%, transparent 60%);
+        animation: pulsarLuz 4s ease-in-out infinite;
+    }
+
+    .skills-content {
+        position: relative; /* CRUCIAL: Mantém o conteúdo acima do fundo */
+        z-index: 2;         /* Fica acima da grade (0) e do fundo (-1) */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1000px;
+        gap: 2.5rem;
 
     .skills-header {
       text-align: center;

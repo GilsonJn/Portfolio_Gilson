@@ -9,7 +9,7 @@ const Hero = () => {
 
             <div className="hero-content">
                 <div className="text-section">
-                    <h1>Gilson Dias</h1>
+                    <h1><span>Gilson Dias</span></h1>
                     <h2>Desenvolvedor Full-Stack</h2>
                     <p className="impact-phrase">
                         Explorando o universo do código para criar interfaces imersivas e sistemas robustos.

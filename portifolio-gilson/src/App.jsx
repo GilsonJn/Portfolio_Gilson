@@ -7,10 +7,11 @@ import About from './Componentes/About'
 import Skills from './Componentes/Skills'
 import Projects from './Componentes/Projects'
 import Contact from './Componentes/Contact'
+import Footer from './Componentes/Footer'
 
 function App() {
   return (
-      <body>
+      <div className="app-container">
         <StarryBackground />
         <Navbar />
         <Hero />
@@ -18,7 +19,8 @@ function App() {
         <Projects />
         <Skills />
         <Contact />
-      </body>
+        <Footer />
+      </div>
   )
 }
 
