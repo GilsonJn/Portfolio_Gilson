@@ -8,14 +8,14 @@ export const projetosLista = {
             descricao: "Plataforma completa de comércio eletrônico para o setor de autopeças. O projeto conquistou o 3º lugar na feira tecnológica NEXT.",
             tecnologias: ["React", "Node.js", "APIs"],
             categoria: "Frontend",
-            linkGithub: "https://github.com/seu-usuario",
-            linkDeploy: "#",
-            detalhesCompletos: "Desenvolvido em parceria com a Rede Âncora, este projeto visa revolucionar a compra de autopeças. Inclui painel de administração, carrinho de compras dinâmico e integração com meios de pagamento.",
+            linkGithub: "https://github.com/Gustavo-b017/algo-front",
+            linkDeploy: "https://algo-front-kohl.vercel.app/",
+            detalhesCompletos: "Desenvolvido em parceria com a Rede Ancora, este projeto visa revolucionar a compra de autopeças. Inclui painel de administração, carrinho de compras dinâmico e integração com meios de pagamento.",
             ano: "2025",
             status: "CONCLUÍDO // PREMIADO",
             parceiro: "Rede Ancora",
             imagemCard: "../img/projetos/ancora.png", 
-            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" 
+            videoModal: "https://youtu.be/M1FcyFauN9A" 
         },
         {
             id: 2,
@@ -30,7 +30,7 @@ export const projetosLista = {
             status: "CONCLUÍDO",
             parceiro: "Hospital HC",
             imagemCard: "../img/projetos/sijia.png", 
-            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" 
+            videoModal: "https://youtu.be/5zhn5S85j0Q" 
         },
         {
             id: 3,
@@ -38,14 +38,14 @@ export const projetosLista = {
             descricao: "Protótipo IoT que utiliza visão computacional para monitorar sinais de fadiga.",
             tecnologias: ["Python", "OpenCV", "IoT"],
             categoria: "IoT & Dados",
-            linkGithub: "https://github.com/seu-usuario",
+            linkGithub: "https://github.com/GilsonJn/DetectorFadiga",
             linkDeploy: "#",
             detalhesCompletos: "Utilizando bibliotecas de visão computacional, o sistema mapeia pontos faciais do motorista em tempo real. Caso detecte sonolência prolongada, emite alertas sonoros e visuais.",
             ano: "2026",
             status: "PROTÓTIPO // ATIVO",
             parceiro: "Individual",
-            imagemCard: "/img/map-fadiga.jpg",
-            videoModal: "" 
+            imagemCard: "../img/projetos/fadiga.jpg",
+            videoModal: "https://youtu.be/8gxoQRHYS10" 
         },
         {
             id: 4,
@@ -53,13 +53,13 @@ export const projetosLista = {
             descricao: "Aplicação web desenvolvida para otimizar o controle de aulas e processos de uma autoescola.",
             tecnologias: ["Java", "Spring Boot", "REST"],
             categoria: "Backend",
-            linkGithub: "https://github.com/seu-usuario",
+            linkGithub: "https://github.com/GilsonJn/Api_AutoEscola",
             linkDeploy: "#",
             detalhesCompletos: "O sistema gerencia todo o ciclo de vida do aluno na autoescola, desde a matrícula até a emissão da CNH, controlando presença e agendamento de aulas práticas.",
             ano: "2025",
             status: "PRODUÇÃO // ESTÁVEL",
             parceiro: "Individual",
-            imagemCard: "/img/autoescola.jpg",
+            imagemCard: "../img/projetos/autoescola.jpg",
             videoModal: ""
         },
         {
@@ -74,8 +74,8 @@ export const projetosLista = {
             ano: "2025",
             status: "CONCLUÍDO",
             parceiro: "Grupo G3",
-            imagemCard: "../img/projetos/sijia.png", // Lembre-se de atualizar esta imagem para uma específica do portfólio
-            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_" 
+            imagemCard: "../img/projetos/g3.jpg", 
+            videoModal: "https://portifolio-g3.vercel.app/" 
         }
     ],
     en: [
@@ -85,14 +85,14 @@ export const projetosLista = {
             descricao: "Complete e-commerce platform for the auto parts sector. The project won 3rd place at the NEXT technology fair.",
             tecnologias: ["React", "Node.js", "APIs"],
             categoria: "Frontend",
-            linkGithub: "https://github.com/seu-usuario",
-            linkDeploy: "#",
+            linkGithub: "https://github.com/Gustavo-b017/algo-front",
+            linkDeploy: "https://algo-front-kohl.vercel.app/",
             detalhesCompletos: "Developed in partnership with Rede Âncora, this project aims to revolutionize auto parts purchasing. It includes an administration panel, a dynamic shopping cart, and payment gateway integration.",
             ano: "2025",
             status: "COMPLETED // AWARDED",
             parceiro: "Rede Ancora",
             imagemCard: "../img/projetos/ancora.png",
-            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_"
+            videoModal: "https://youtu.be/M1FcyFauN9A"
         },
         {
             id: 2,
@@ -107,7 +107,7 @@ export const projetosLista = {
             status: "COMPLETED",
             parceiro: "Hospital HC",
             imagemCard: "../img/projetos/sijia.png",
-            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_"
+            videoModal: "https://youtu.be/5zhn5S85j0Q"
         },
         {
             id: 3,
@@ -115,14 +115,14 @@ export const projetosLista = {
             descricao: "IoT prototype that uses computer vision to monitor signs of driver fatigue.",
             tecnologias: ["Python", "OpenCV", "IoT"],
             categoria: "IoT & Data",
-            linkGithub: "https://github.com/seu-usuario",
+            linkGithub: "https://github.com/GilsonJn/DetectorFadiga",
             linkDeploy: "#",
             detalhesCompletos: "Using computer vision libraries, the system maps the driver's facial points in real-time. If it detects prolonged drowsiness, it issues both sound and visual alerts.",
             ano: "2026",
             status: "PROTOTYPE // ACTIVE",
             parceiro: "Individual",
-            imagemCard: "/img/map-fadiga.jpg",
-            videoModal: ""
+            imagemCard: "../img/projetos/fadiga.jpg",
+            videoModal: "https://youtu.be/8gxoQRHYS10"
         },
         {
             id: 4,
@@ -130,13 +130,13 @@ export const projetosLista = {
             descricao: "Web application developed to optimize class scheduling and processes for a driving school.",
             tecnologias: ["Java", "Spring Boot", "REST"],
             categoria: "Backend",
-            linkGithub: "https://github.com/seu-usuario",
+            linkGithub: "https://github.com/GilsonJn/Api_AutoEscola",
             linkDeploy: "#",
             detalhesCompletos: "The system manages the entire lifecycle of a student at the driving school, from enrollment to the issuance of the driver's license, controlling attendance and practical class scheduling.",
             ano: "2025",
             status: "PRODUCTION // STABLE",
             parceiro: "Individual",
-            imagemCard: "/img/autoescola.jpg",
+            imagemCard: "../img/projetos/autoescola.jpg",
             videoModal: ""
         },
         {
@@ -147,12 +147,12 @@ export const projetosLista = {
             categoria: "Frontend",
             linkGithub: "https://github.com/Gustavo-b017/Portifolio_G3",
             linkDeploy: "https://portifolio-g3.vercel.app/",
-            detalhesCompletos: "A responsive web page created to consolidate and exhibit the work of Team G3 (formed by Gilson, Gustavo, Jeferson, and Larissa). The project highlights our academic journey, the technologies we master, and the awards won throughout the course.",
+            detalhesCompletos: "A responsive web page created to consolidate and exhibit the work of Team G3 (formed by me, Gustavo and Jeferson). The project highlights our academic journey, the technologies we master, and the awards won throughout the course.",
             ano: "2025",
             status: "COMPLETED",
             parceiro: "Team G3",
-            imagemCard: "../img/projetos/sijia.png", 
-            videoModal: "https://youtu.be/ScF981rHeic?si=w6N9NdLv3p_6xRK_"
+            imagemCard: "../img/projetos/g3.jpg", 
+            videoModal: "https://portifolio-g3.vercel.app/"
         }
     ]
 };
