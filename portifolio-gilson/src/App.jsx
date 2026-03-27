@@ -10,20 +10,32 @@ import Contact from './Componentes/Contact'
 import Footer from './Componentes/Footer'
 import { LanguageProvider } from './context/LanguageContext'
 import CustomCursor from './Componentes/CustomCursor'
+import Reveal from './Componentes/Reveal'
 
 function App() {
   return (
-      <LanguageProvider>
-        <CustomCursor />
-        <StarryBackground />
-        <Navbar />
-        <Hero />
+    <LanguageProvider>
+      <CustomCursor />
+      <StarryBackground />
+      <Navbar />
+      <Hero />
+      <Reveal>
         <About />
+      </Reveal>
+
+      <Reveal>
         <Projects />
+      </Reveal>
+
+      <Reveal>
         <Skills />
+      </Reveal>
+
+      <Reveal>
         <Contact />
-        <Footer />
-      </LanguageProvider>
+      </Reveal>
+      <Footer />
+    </LanguageProvider>
   )
 }
 

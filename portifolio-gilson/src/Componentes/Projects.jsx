@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom'; // 1. NOVA IMPORTAÇÃO AQUI!
 import '../../public/style/projects.scss';
 import { projetosLista } from '../../public/data/projetosData';
 import { useLanguage } from '../context/LanguageContext';
@@ -170,8 +171,8 @@ const Projects = () => {
                 </div>
             </div>
 
-            {/* MODAL HUD */}
-            {projetoSelecionado && (
+            {/* 2. O CREATE PORTAL APLICADO À SUA MODAL HUD AQUI! */}
+            {projetoSelecionado && createPortal(
                 <div className="modal-overlay" onClick={fecharPainel}>
                     <div className="modal-hud" onClick={(e) => e.stopPropagation()}>
                         
@@ -238,7 +239,8 @@ const Projects = () => {
                         </div>
 
                     </div>
-                </div>
+                </div>,
+                document.body // Injeta a modal direto na base da página!
             )}
         </section>
     );

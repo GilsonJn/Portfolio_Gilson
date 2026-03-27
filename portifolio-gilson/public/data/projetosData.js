@@ -70,7 +70,7 @@ export const projetosLista = {
             categoria: "Frontend",
             linkGithub: "https://github.com/Gustavo-b017/Portifolio_G3",
             linkDeploy: "https://portifolio-g3.vercel.app/",
-            detalhesCompletos: "Página web responsiva criada para consolidar e expor os trabalhos da equipe G3 (formada por Gilson, Gustavo, Jeferson e Larissa). O projeto destaca a nossa trajetória académica, as tecnologias que dominamos e as premiações conquistadas ao longo do curso.",
+            detalhesCompletos: "Página web responsiva criada para consolidar e expor os trabalhos da equipe G3 (formada por mim, Gustavo e Jeferson). O projeto destaca a nossa trajetória académica, as tecnologias que dominamos e as premiações conquistadas ao longo do curso.",
             ano: "2025",
             status: "CONCLUÍDO",
             parceiro: "Grupo G3",

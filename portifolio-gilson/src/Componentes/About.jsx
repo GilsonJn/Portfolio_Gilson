@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom'; 
 import '../../public/style/about.scss'; 
 import fotoPerfil from '../../public/img/foto2.png';
 import { useLanguage } from '../context/LanguageContext'; // IMPORTAR O HOOK
@@ -70,7 +71,7 @@ const About = () => {
             </div>
 
             {/* MODAL TRADUZIDO */}
-            {isModalOpen && (
+            {isModalOpen && createPortal(
                 <div className="about-modal-overlay" onClick={fecharModal}>
                     <div className="about-modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="close-btn" onClick={fecharModal}>[ X ]</button>
@@ -128,7 +129,8 @@ const About = () => {
                             </p>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </section>
     );
