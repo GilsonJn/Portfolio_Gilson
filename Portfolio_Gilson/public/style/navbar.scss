@@ -171,12 +171,14 @@
       height: 100%;
       border-radius: 12px;
       background-color: var(--bg-dark);
-      padding: 12px 16px;
-      gap: 10px;
+      padding: 15px 10px; /* Aumentei um pouco o respiro geral do topo e fundo do menu */
+      gap: 10px; /* AUMENTADO: Aumenta o espaço físico entre os links (era 10px) */
       align-items: center;
     }
 
     a {
+      display: block; /* CRUCIAL: Permite que o link cresça e aceite padding */
+      padding: 10px 30px; /* AUMENTADO: Cria uma "caixa invisível" grande para o clique */
       color: var(--text-light);
       font-weight: 400;
       text-transform: uppercase;
@@ -292,7 +294,7 @@
   .warp-flash {
     position: absolute;
     inset: 0;
-    background: #ffffffe7;
+    background: #fffffff9;
     opacity: 0;
   }
 }

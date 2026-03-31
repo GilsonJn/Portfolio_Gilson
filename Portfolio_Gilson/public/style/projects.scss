@@ -385,36 +385,45 @@
         box-shadow: 0 0 30px rgba(45, 91, 255, 0.15), inset 0 0 20px rgba(45, 91, 255, 0.1);
         border-radius: 8px;
         position: relative;
-        overflow-y: auto;
+        //overflow-y: auto;
         animation: bootTerminal 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
-        scrollbar-width: none;
+        //scrollbar-width: none;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
 
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
+        /* AS MOLDURAS DA HUD */
         &::before,
         &::after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--neon-blue);
+            width: 35px;
+            height: 35px;
+            border: 3px solid var(--neon-blue);
+            /* Deixei a linha um pouco mais grossa para destacar */
             pointer-events: none;
+            z-index: 20;
+            /* Garante que ficam sempre por cima de tudo */
         }
 
         &::before {
-            top: 10px;
-            left: 10px;
+            /* Colado à extremidade para não invadir o texto */
+            top: 0;
+            left: 0;
             border-right: none;
             border-bottom: none;
+            border-top-left-radius: 8px;
+            /* Acompanha a curva da modal perfeitamente */
         }
 
         &::after {
-            bottom: 10px;
-            right: 10px;
+            /* Colado à extremidade para não invadir o texto */
+            bottom: 0;
+            right: 0;
             border-left: none;
             border-top: none;
+            border-bottom-right-radius: 8px;
+            /* Acompanha a curva da modal perfeitamente */
         }
 
         .hud-header {
@@ -458,6 +467,26 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+
+            /* 2. O SCROLL VEM PARA AQUI: Apenas o conteúdo rola, as molduras ficam congeladas! */
+            overflow-y: auto;
+
+            /* BÓNUS: Uma barra de rolagem futurista combinando com o tema Cyberpunk */
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-blue) rgba(0, 0, 0, 0.2);
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--neon-blue);
+                border-radius: 10px;
+            }
 
             .hud-titulo-wrapper {
                 display: flex;
@@ -689,9 +718,9 @@
         margin-top: 300px;
 
         .projetos-content {
-            
+
             margin-top: 0;
-            
+
             .projetos-header {
                 .projetos-title h2 {
                     font-size: var(--titulo);
