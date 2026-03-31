@@ -1,65 +1,95 @@
-/* Esconde o cursor padrão APENAS SE o utilizador usar um rato de verdade */
+/* Esconde o cursor padrão APENAS SE o utilizador usar um rato (como já fizemos) */
 @media (pointer: fine) {
-    body {
-        cursor: none;
-    }
-    
-    a, button, .clickable, .nav-lang-minimal, .btn-filtro, .projeto-card {
+    body, a, button, .clickable {
         cursor: none !important;
     }
 }
 
-/* O Ponto Central (Núcleo) */
-.cursor-dot {
+/* Base Comum para todos os elementos do rato */
+.star-head, .star-tail-particle {
     position: fixed;
     top: 0;
     left: 0;
-    width: 6px;
-    height: 6px;
-    background-color: var(--neon-blue, #2d5bff);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100000;
     pointer-events: none; /* Deixa o clique passar através dele */
-    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-    
-    /* Move instantaneamente, só anima a opacidade */
-    transition: opacity 0.2s;
+    z-index: 100000;
+    will-change: transform; /* Otimização de hardware */
+}
 
+/* === 1. A CABEÇA DA ESTRELA (O Núcleo) === */
+.star-head {
+    width: 8px;
+    height: 8px;
+    transition: width 0.3s, height 0.3s, opacity 0.3s;
+
+    .star-core {
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff; // Núcleo branco puro
+        border-radius: 50%;
+        
+        /* O "Fator Uau": Brilho Neon Azul/Branco intenso (Bloom) */
+        box-shadow: 0 0 10px #ffffff, 0 0 20px var(--neon-blue, #2d5bff), 0 0 30px var(--neon-blue);
+        
+        /* Desenha uma estrela de 4 pontas sutil usando pseudo-elementos */
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: inherit;
+            border-radius: 2px;
+            transform: translate(-50%, -50%);
+            box-shadow: inherit;
+        }
+        &::before { width: 150%; height: 60%; }
+        &::after { width: 60%; height: 150%; }
+    }
+
+    /* Quando passa por cima de um link, a cabeça fica mais fraca para a cauda aparecer mais */
     &.hover {
-        opacity: 0;
+        opacity: 0.2;
     }
 }
 
-/* A Aura de Energia (Rastro) */
-.cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 35px;
-    height: 35px;
-    border: 2px solid rgba(176, 38, 255, 0.6);
+/* === 2. AS PARTÍCULAS DA CAUDA === */
+.star-tail-particle {
+    /* Tamanho base que será escalado pelo inline style */
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 99999;
-    pointer-events: none;
-    box-shadow: 0 0 15px rgba(176, 38, 255, 0.3), inset 0 0 10px rgba(176, 38, 255, 0.2);
-    
-    /* A MÁGICA ESTÁ AQUI: O atraso de 0.1s no left/top cria o rastro! */
-    transition: left 0.1s ease-out, top 0.1s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    background-color: #ffffff;
 
+    /* Aplica as variáveis calculadas no React para criar o rastro */
+    opacity: var(--opacity);
+    transform: translate3d(0, 0, 0) scale(var(--scale)) translate(-50%, -50%);
+    
+    /* Gradiente de Cor da Cauda: Branco/Azul perto da cabeça -> Roxo Neon no fim */
+    /* Usamos um cálculo CSS para misturar as cores baseadas no índice da partícula */
+    background: color-mix(
+        in srgb, 
+        var(--neon-blue, #2d5bff) calc(100% - (var(--index) / var(--total) * 100%)), 
+        var(--neon-purple, #b026ff)
+    );
+    
+    /* Brilho da cauda (menor que a cabeça) */
+    box-shadow: 0 0 calc(5px * var(--scale)) rgba(255, 255, 255, 0.5), 0 0 calc(10px * var(--scale)) rgba(176, 38, 255, 0.3);
+
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+
+    /* Quando passa por cima de um link, a cauda expande-se e vira um "alvo" */
     &.hover {
-        width: 50px;
-        height: 50px;
-        background-color: rgba(45, 91, 255, 0.1);
-        border-color: var(--neon-blue, #2d5bff);
+        width: 45px;
+        height: 45px;
+        opacity: 0.15;
+        background-color: transparent;
+        border: 2px solid var(--neon-blue, #2d5bff);
         box-shadow: 0 0 20px rgba(45, 91, 255, 0.4);
     }
 }
 
-/* Se for mobile/tablet (touch), não mostra a aura nem o ponto */
+/* Se for mobile/tablet (touch), não mostra nada */
 @media (max-width: 768px), (pointer: coarse) {
-    .cursor-dot, .cursor-outline {
+    .star-head, .star-tail-particle {
         display: none !important;
     }
     body, a, button {
