@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom'; 
 import '../../public/style/about.scss'; 
-import fotoPerfil from '../../public/img/foto2.png';
+import fotoPerfil from '../../public/img/perfil.webp';
 import { useLanguage } from '../context/LanguageContext'; // IMPORTAR O HOOK
 
 const About = () => {
@@ -16,9 +16,9 @@ const About = () => {
     };
 
     const imagensCarrossel = [
-        { tipo: 'img', src: '/img/top3/1.jpg' },
-        { tipo: 'img', src: '/img/top3/2.jpg' },
-        { tipo: 'img', src: '/img/projetos/ancora.png', alt: 'Apresentação Rede Âncora' },
+        { tipo: 'img', src: '/img/top3/1.webp' },
+        { tipo: 'img', src: '/img/top3/2.webp' },
+        { tipo: 'img', src: '/img/projetos/ancora.webp', alt: 'Apresentação Rede Âncora' },
         { tipo: 'placeholder', text: 'FOTO_EQUIPE_G3.JPG' }
     ];
 

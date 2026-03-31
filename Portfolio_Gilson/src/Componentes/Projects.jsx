@@ -5,7 +5,7 @@ import { projetosLista } from '../../public/data/projetosData';
 import { useLanguage } from '../context/LanguageContext';
 
 const Projects = () => {
-    const { language, t } = useLanguage(); 
+    const { language, t } = useLanguage();
     const carrosselRef = useRef(null);
     const [filtroAtual, setFiltroAtual] = useState('Todos');
     const [projetoSelecionado, setProjetoSelecionado] = useState(null);
@@ -17,6 +17,36 @@ const Projects = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+    const [isSectionVisible, setIsSectionVisible] = useState(false);
+    const sectionRef = useRef(null); 
+
+    // Deteta se o utilizador está a olhar para os projetos
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsSectionVisible(entry.isIntersecting),
+            { threshold: 0.1 }
+        );
+        if (sectionRef.current) observer.observe(sectionRef.current);
+        return () => observer.disconnect();
+    }, []);
+
+    // Atualize o useEffect da animação do carrossel para respeitar o isSectionVisible
+    useEffect(() => {
+        let animationFrameId;
+        const scrollStep = () => {
+            // O CARROSSEL AGORA SÓ RODA SE A SECÇÃO ESTIVER NA TELA (isSectionVisible)
+            if (isSectionVisible && carrosselRef.current && filtroAtual === 'Todos' && !isHovered && !isDragging && !isMouseDown && !isMobile) {
+                carrosselRef.current.scrollLeft += 0.5;
+                if (carrosselRef.current.scrollLeft >= carrosselRef.current.scrollWidth / 2) {
+                    carrosselRef.current.scrollLeft = 0;
+                }
+            }
+            animationFrameId = requestAnimationFrame(scrollStep);
+        };
+        animationFrameId = requestAnimationFrame(scrollStep);
+        return () => cancelAnimationFrame(animationFrameId);
+    }, [filtroAtual, isHovered, isDragging, isMouseDown, isMobile, isSectionVisible]);
+
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         window.addEventListener('resize', handleResize);
@@ -27,8 +57,8 @@ const Projects = () => {
 
     const projetosDoIdioma = projetosLista[language] || projetosLista.pt;
 
-    const projetosFiltrados = filtroAtual === 'Todos' 
-        ? projetosDoIdioma 
+    const projetosFiltrados = filtroAtual === 'Todos'
+        ? projetosDoIdioma
         : projetosDoIdioma.filter(projeto => projeto.categoria === filtroAtual);
 
     const displayProjetos = (filtroAtual === 'Todos' && !isMobile) ? [...projetosFiltrados, ...projetosFiltrados] : projetosFiltrados;
@@ -66,7 +96,7 @@ const Projects = () => {
     const handleMouseUp = () => {
         if (isMobile) return;
         setIsMouseDown(false);
-        setTimeout(() => setIsDragging(false), 50); 
+        setTimeout(() => setIsDragging(false), 50);
     };
 
     const handleMouseMove = (e) => {
@@ -88,11 +118,11 @@ const Projects = () => {
         if (match && match[2].length === 11) {
             return `https://www.youtube.com/embed/${match[2]}`;
         }
-        return url; 
+        return url;
     };
 
     return (
-        <section id="projetos" className="projetos-section">
+        <section id="projetos" className="projetos-section" ref={sectionRef}>
             <div className="projetos-content">
                 <div className="projetos-header">
                     <div className="projetos-title">
@@ -101,7 +131,7 @@ const Projects = () => {
                 </div>
 
                 <div className="carrossel-wrapper">
-                    <div 
+                    <div
                         className={`projetos-container ${!isMobile ? 'modo-carrossel' : 'modo-grid'} ${isDragging ? 'arrastando' : ''}`}
                         ref={carrosselRef}
                         onMouseDown={handleMouseDown}
@@ -112,9 +142,9 @@ const Projects = () => {
                     >
                         {displayProjetos.map((projeto, index) => (
                             <div className="projeto-card" key={`${projeto.titulo}-${index}`}>
-                                
+
                                 <div className="borda-animada"></div>
-                                <div className="card-inner"> 
+                                <div className="card-inner">
 
                                     <div className="projeto-imagem">
                                         <div className="img-placeholder">
@@ -122,10 +152,16 @@ const Projects = () => {
                                             <span className="texto-piscar">{t('projects.noSignal')} </span>
                                         </div>
                                         {projeto.imagemCard && (
-                                            <img src={projeto.imagemCard} alt={projeto.titulo} className="img-card-real" />
+                                            <img
+                                                src={projeto.imagemCard}
+                                                alt={projeto.titulo}
+                                                className="img-card-real"
+                                                loading="lazy"
+                                                width="400"
+                                                height="250" />
                                         )}
                                     </div>
-                                    
+
                                     <div className="projeto-info">
                                         <h3>{projeto.titulo}</h3>
                                         <p className="desc-mobile">{projeto.descricao}</p>
@@ -135,13 +171,13 @@ const Projects = () => {
                                             ))}
                                         </div>
                                         <div className="projeto-links">
-                                            <button 
+                                            <button
                                                 onClick={(e) => {
                                                     if (isDragging) e.preventDefault();
                                                     else setProjetoSelecionado(projeto);
-                                                }} 
-                                                className="btn-primary" 
-                                                style={{width: '100%'}}
+                                                }}
+                                                className="btn-primary"
+                                                style={{ width: '100%' }}
                                             >
                                                 {t('projects.learnMore')}
                                             </button>
@@ -157,7 +193,7 @@ const Projects = () => {
 
                 <div className="projetos-filtros">
                     {categorias.map(categoria => (
-                        <button 
+                        <button
                             key={categoria}
                             className={`btn-filtro ${filtroAtual === categoria ? 'ativo' : ''}`}
                             onClick={() => {
@@ -175,7 +211,7 @@ const Projects = () => {
             {projetoSelecionado && createPortal(
                 <div className="modal-overlay" onClick={fecharPainel}>
                     <div className="modal-hud" onClick={(e) => e.stopPropagation()}>
-                        
+
                         <div className="hud-header">
                             <span className="hud-status">
                                 {isMobile ? ` ${t('projects.statusMobile')}` : `${t('projects.statusDesktop')} ${Math.floor(Math.random() * 9000) + 1000}`}
@@ -190,15 +226,15 @@ const Projects = () => {
                                 <h2 className="hud-titulo">{projetoSelecionado.titulo}</h2>
                                 <span className="hud-categoria-tag">{projetoSelecionado.categoria}</span>
                             </div>
-                            
+
                             <div className="hud-display-midia">
                                 <div className="scanline"></div>
                                 {projetoSelecionado.videoModal ? (
-                                    <iframe 
+                                    <iframe
                                         src={getYouTubeEmbedUrl(projetoSelecionado.videoModal)}
                                         title={projetoSelecionado.titulo}
                                         frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         allowFullScreen
                                         className="midia-hud"
                                     ></iframe>
@@ -222,7 +258,7 @@ const Projects = () => {
 
                             <div className="hud-dados">
                                 <p className="texto-tecnico"> {t('projects.dataLog')} {projetoSelecionado.detalhesCompletos}</p>
-                                
+
                                 <div className="hud-acoes">
                                     {projetoSelecionado.linkGithub !== "#" && (
                                         <a href={projetoSelecionado.linkGithub} target="_blank" rel="noreferrer" className="btn-hud-secundario">

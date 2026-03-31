@@ -14,7 +14,7 @@ export const projetosLista = {
             ano: "2025",
             status: "CONCLUÍDO // PREMIADO",
             parceiro: "Rede Ancora",
-            imagemCard: "../img/projetos/ancora.png", 
+            imagemCard: "../img/projetos/ancora.webp", 
             videoModal: "https://youtu.be/M1FcyFauN9A" 
         },
         {
@@ -29,7 +29,7 @@ export const projetosLista = {
             ano: "2024",
             status: "CONCLUÍDO",
             parceiro: "Hospital HC",
-            imagemCard: "../img/projetos/sijia.png", 
+            imagemCard: "../img/projetos/sijia.webp", 
             videoModal: "https://youtu.be/5zhn5S85j0Q" 
         },
         {
@@ -44,7 +44,7 @@ export const projetosLista = {
             ano: "2026",
             status: "PROTÓTIPO // ATIVO",
             parceiro: "Individual",
-            imagemCard: "../img/projetos/fadiga.jpg",
+            imagemCard: "../img/projetos/fadiga.webp",
             videoModal: "https://youtu.be/8gxoQRHYS10" 
         },
         {
@@ -59,7 +59,7 @@ export const projetosLista = {
             ano: "2025",
             status: "PRODUÇÃO // ESTÁVEL",
             parceiro: "Individual",
-            imagemCard: "../img/projetos/autoescola.jpg",
+            imagemCard: "../img/projetos/autoescola.webp",
             videoModal: ""
         },
         {
@@ -74,7 +74,7 @@ export const projetosLista = {
             ano: "2025",
             status: "CONCLUÍDO",
             parceiro: "Grupo G3",
-            imagemCard: "../img/projetos/g3.jpg", 
+            imagemCard: "../img/projetos/g3.webp", 
             videoModal: "https://portifolio-g3.vercel.app/" 
         }
     ],
@@ -91,7 +91,7 @@ export const projetosLista = {
             ano: "2025",
             status: "COMPLETED // AWARDED",
             parceiro: "Rede Ancora",
-            imagemCard: "../img/projetos/ancora.png",
+            imagemCard: "../img/projetos/ancora.webp",
             videoModal: "https://youtu.be/M1FcyFauN9A"
         },
         {
@@ -106,7 +106,7 @@ export const projetosLista = {
             ano: "2024",
             status: "COMPLETED",
             parceiro: "Hospital HC",
-            imagemCard: "../img/projetos/sijia.png",
+            imagemCard: "../img/projetos/sijia.webp",
             videoModal: "https://youtu.be/5zhn5S85j0Q"
         },
         {
@@ -121,7 +121,7 @@ export const projetosLista = {
             ano: "2026",
             status: "PROTOTYPE // ACTIVE",
             parceiro: "Individual",
-            imagemCard: "../img/projetos/fadiga.jpg",
+            imagemCard: "../img/projetos/fadiga.webp",
             videoModal: "https://youtu.be/8gxoQRHYS10"
         },
         {
@@ -136,7 +136,7 @@ export const projetosLista = {
             ano: "2025",
             status: "PRODUCTION // STABLE",
             parceiro: "Individual",
-            imagemCard: "../img/projetos/autoescola.jpg",
+            imagemCard: "../img/projetos/autoescola.webp",
             videoModal: ""
         },
         {
@@ -151,7 +151,7 @@ export const projetosLista = {
             ano: "2025",
             status: "COMPLETED",
             parceiro: "Team G3",
-            imagemCard: "../img/projetos/g3.jpg", 
+            imagemCard: "../img/projetos/g3.webp", 
             videoModal: "https://portifolio-g3.vercel.app/"
         }
     ]
