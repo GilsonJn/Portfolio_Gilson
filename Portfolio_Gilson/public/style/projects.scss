@@ -516,7 +516,15 @@
 
             .hud-display-midia {
                 width: 100%;
-                height: 250px;
+                
+                /* ========================================= */
+                /* A MÁGICA PARA O VÍDEO NÃO SER ESMAGADO:   */
+                /* ========================================= */
+                flex-shrink: 0; /* Proíbe o Flexbox de amassar esta div */
+                aspect-ratio: 16 / 9; /* Força a proporção perfeita do YouTube */
+                height: auto; /* Deixa a altura ajustar-se à proporção */
+                min-height: 200px; /* Tamanho mínimo de segurança no mobile */
+
                 background: #050508;
                 border: 1px solid rgba(176, 38, 255, 0.3);
                 border-radius: 4px;
