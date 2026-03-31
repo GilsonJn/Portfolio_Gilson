@@ -76,7 +76,36 @@ export const projetosLista = {
             parceiro: "Grupo G3",
             imagemCard: "../img/projetos/g3.webp", 
             videoModal: "https://portifolio-g3.vercel.app/" 
+        }, 
+        {
+            id: 6,
+            titulo: "Tekoá",
+            categoria: "Backend",
+            descricao: "Sistema Inteligente de Resgate e Remanejamento de Fauna Silvestre em Áreas de Queimada.",
+            tecnologias: ["Java 21", "Spring Boot", "H2 Database", "Lombok"],
+            imagemCard: "/img/projetos/tekoa.webp", // Lembre-se de colocar uma boa imagem com este nome na pasta
+            videoModal: "https://www.youtube.com/embed/HodtSdvxjYQ", // Já convertido para formato de ecrã incorporado (embed)
+            ano: "2025",
+            status: "Concluído",
+            detalhesCompletos: "SITUAÇÃO: Queimadas causam impactos devastadores e há enorme falta de coordenação entre voluntários e centros de atendimento durante o resgate de animais. TAREFA: Criar uma solução integrada para registrar, acompanhar e direcionar resgates de forma inteligente. AÇÃO: Desenvolvi uma API RESTful robusta em Java utilizando Spring Boot e banco de dados H2. Implementei validações com Jakarta, arquitetura MVC em camadas e endpoints para gerir geolocalização e classificação clínica. RESULTADO: Uma plataforma ágil que automatiza e organiza o encaminhamento aos centros veterinários, aumentando a taxa de sobrevivência dos animais e otimizando os recursos em situações de emergência.",
+            linkGithub: "https://github.com/G1lsJn/apptekoa",
+            linkDeploy: "#" // Coloque o link aqui se hospedar a API no Render, Railway ou Heroku
+        },
+        {
+            id: 7,
+            titulo: "Sijia - Quiz interativo IoT",
+            categoria: "IoT & Dados",
+            descricao: "Quiz interativo IoT com Arduino e ESP32 criado para reduzir a ansiedade de crianças em salas de espera hospitalares.",
+            tecnologias: ["C++", "Arduino", "ESP32", "Node-RED", "TagoIO", "IoT"],
+            imagemCard: "/img/projetos/sijia.webp", // Lembre-se de salvar uma imagem do hardware com este nome na pasta public/img
+            videoModal: "https://www.youtube.com/embed/uZpetHS-DDY", // Vídeo do protótipo físico já convertido para embed
+            ano: "2024",
+            status: "Concluído",
+            detalhesCompletos: "SITUAÇÃO: Salas de espera hospitalares geram ansiedade, medo e tédio nos pacientes (especialmente no atendimento pediátrico), prejudicando a experiência e o tratamento. TAREFA: Criar um dispositivo lúdico e interativo para distrair, educar e acalmar as crianças durante a espera. AÇÃO: Programei e construí um hardware usando Arduino e ESP32 com display LCD, LEDs, botões e buzzer para um jogo de quiz. Além da eletrônica, implementei a integração IoT, enviando os dados de uso do dispositivo físico para a nuvem através do Node-RED para serem monitorizados num painel do TagoIO. RESULTADO: A criação de um ambiente hospitalar mais amigável e acolhedor, que reduz o estresse, entretém os pacientes e estimula o raciocínio lógico através da tecnologia.",
+            linkGithub: "https://github.com/GilsonJn/Projetos/blob/Sijia/Sijia%20-%20EDGE/README.md", 
+            linkDeploy: "#"
         }
+
     ],
     en: [
         {
@@ -153,6 +182,34 @@ export const projetosLista = {
             parceiro: "Team G3",
             imagemCard: "../img/projetos/g3.webp", 
             videoModal: "https://portifolio-g3.vercel.app/"
+        },
+        {
+            id: 6,
+            titulo: "Tekoá",
+            categoria: "Backend",
+            descricao: "Intelligent System for the Rescue and Relocation of Wild Fauna in Burned Areas.",
+            tecnologias: ["Java 21", "Spring Boot", "H2 Database", "Lombok"],
+            imagemCard: "/img/projetos/tekoa.webp",
+            videoModal: "https://www.youtube.com/embed/HodtSdvxjYQ",
+            ano: "2025",
+            status: "Completed",
+            detalhesCompletos: "SITUATION: Wildfires cause devastating impacts, and there is a massive lack of coordination between volunteers and care centers during animal rescue. TASK: Create an integrated solution to register, track, and intelligently direct rescues. ACTION: Developed a robust RESTful API in Java using Spring Boot and an H2 database. Implemented Jakarta validations, layered MVC architecture, and endpoints to manage geolocation and clinical classification. RESULT: An agile platform that automates and organizes routing to veterinary centers, increasing animal survival rates and optimizing resources in emergency situations.",
+            linkGithub: "https://github.com/G1lsJn/apptekoa",
+            linkDeploy: "#"
+        },
+        {
+            id: 7,
+            titulo: "Sijia - Interactive IoT Quiz",
+            categoria: "IoT & Dados",
+            descricao: "Interactive IoT quiz built with Arduino and ESP32 to reduce children's anxiety in hospital waiting rooms.",
+            tecnologias: ["C++", "Arduino", "ESP32", "Node-RED", "TagoIO", "IoT"],
+            imagemCard: "/img/projetos/sijia.webp",
+            videoModal: "https://www.youtube.com/embed/uZpetHS-DDY",
+            ano: "2024",
+            status: "Completed",
+            detalhesCompletos: "SITUATION: Hospital waiting rooms cause anxiety, fear, and boredom in patients (especially in pediatric care), negatively impacting their experience and treatment. TASK: Create a playful and interactive device to distract, educate, and calm children while they wait. ACTION: I programmed and built hardware using Arduino and ESP32, featuring an LCD display, LEDs, buttons, and a buzzer for a quiz game. Beyond electronics, I implemented IoT integration, sending usage data from the physical device to the cloud via Node-RED to be monitored on a TagoIO dashboard. RESULT: The creation of a friendlier and more welcoming hospital environment that reduces stress, entertains patients, and stimulates logical reasoning through technology.",
+            linkGithub: "https://github.com/GilsonJn/Projetos/blob/Sijia/Sijia%20-%20EDGE/README.md",
+            linkDeploy: "#"
         }
     ]
 };
